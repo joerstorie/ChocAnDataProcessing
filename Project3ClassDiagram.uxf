@@ -1,28 +1,8 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>730</x><y>1313</y><w>230</w><h>310</h></coordinates><panel_attributes>*Person*
---
--name : string
--number : int
--streetAddress : string
--city : string
--state : string
--zipCode : int
---
-+getName() : string
-+getNumber() : int
-+getStreetAddress() : string
-+getCity() : string
-+getState() : string
-+getZipCode() : int
-+setName(name : string) : void
-+setNumber(number : int) : void
-+setStreetAddress(streetAddress : string) : void
-+setCity(city : string) : void
-+setState(state : string) : void
-+setZipCode(zipCode : int) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1020</x><y>1533</y><w>120</w><h>70</h></coordinates><panel_attributes>*Member*
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>740</x><y>1533</y><w>120</w><h>70</h></coordinates><panel_attributes>*Member*
 --
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1020</x><y>1423</y><w>120</w><h>70</h></coordinates><panel_attributes>*Provider*
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>1560</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>1450</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1040</x><y>1013</y><w>160</w><h>70</h></coordinates><panel_attributes>*Timer*
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>1423</y><w>120</w><h>70</h></coordinates><panel_attributes>*Provider*
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>1510</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;40;10;40;60;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>1450</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;70;40;70;40;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1040</x><y>1013</y><w>160</w><h>70</h></coordinates><panel_attributes>*Timer*
 --
 -timeMidnight : string
 --
@@ -103,7 +83,7 @@ variables
 --
 +getProviderID() : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1254</x><y>950</y><w>190</w><h>80</h></coordinates><panel_attributes>*Summary Report*
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1024</x><y>830</y><w>210</w><h>140</h></coordinates><panel_attributes>*Report Controller*
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1024</x><y>830</y><w>210</w><h>150</h></coordinates><panel_attributes>*Report Controller*
 --
 variables
 --
@@ -111,12 +91,14 @@ variables
 -createMemberReport() : void
 -createServiceReport() : void
 -createEFTReport() : void
+-createSummaryReport() : void
 -readServiceRecord() : string
-+createReports() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>890</x><y>730</y><w>110</w><h>70</h></coordinates><panel_attributes>*Provider Directory*
++createReports() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>500</y><w>210</w><h>110</h></coordinates><panel_attributes>*Provider Directory*
 --
--serviceCode : int
+-serviceCodeDirectory : Directory
 --
-+getService() : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1684</x><y>470</y><w>320</w><h>200</h></coordinates><panel_attributes>*Provider Report*
+-searchDirectory(service : string) : int
++getService(service : String) : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1684</x><y>470</y><w>320</w><h>200</h></coordinates><panel_attributes>*Provider Report*
 --
 -serviceList : List&lt;ProviderService&gt;
 -numConsultations : int
@@ -136,7 +118,7 @@ variables
 +getServiceList() : List&lt;MemberService&gt;
 +getService(x : int) : MemberService
 +setServiceList(serviceList : List&lt;MemberService&gt;) : void
-+setService(x : int, serv : MemberService) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1274</x><y>1070</y><w>190</w><h>80</h></coordinates><panel_attributes>*EFT Report*
++setService(x : int, serv : MemberService) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1484</x><y>540</y><w>190</w><h>80</h></coordinates><panel_attributes>*EFT Report*
 --
 -provCredit : float
 --
@@ -176,7 +158,7 @@ variables
 +getMemberNum() : int
 +getServiceCode() : int
 +getFee() : float
-+setserviceDate(serviceDate : Date) : void
++setServiceDate(serviceDate : Date) : void
 +setDateTimeReceived(dateTimeReceived : string) : void
 +setMemberName(memberName : string) : void
 +setMemberNum(memberNum : int) : void
@@ -192,6 +174,30 @@ variables
 +getserviceDate() : Date
 +getProviderName() : string
 +getServiceName() : string
-+setserviceDate(serviceDate : Date) : void
++setServiceDate(serviceDate : Date) : void
 +setProviderName(providerName : string) : void
-+setServiceName(serviceName : string) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2000</x><y>299</y><w>170</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90;150;90;150;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1850</x><y>299</y><w>180</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;160;90;10;90;10;170</additional_attributes></element><element><id>Relation</id><coordinates><x>2150</x><y>580</y><w>30</w><h>170</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>1850</x><y>660</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element></diagram>
++setServiceName(serviceName : string) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2000</x><y>299</y><w>170</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90;150;90;150;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1850</x><y>299</y><w>180</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;160;90;10;90;10;170</additional_attributes></element><element><id>Relation</id><coordinates><x>2150</x><y>580</y><w>30</w><h>170</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>1850</x><y>660</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Text</id><coordinates><x>1840</x><y>670</y><w>30</w><h>30</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>1860</x><y>710</y><w>30</w><h>30</h></coordinates><panel_attributes>*
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2160</x><y>710</y><w>30</w><h>30</h></coordinates><panel_attributes>*
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2140</x><y>590</y><w>30</w><h>30</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1040</x><y>550</y><w>140</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>920</x><y>1353</y><w>230</w><h>310</h></coordinates><panel_attributes>*Person*
+--
+-name : string
+-number : int
+-streetAddress : string
+-city : string
+-state : string
+-zipCode : int
+--
++getName() : string
++getNumber() : int
++getStreetAddress() : string
++getCity() : string
++getState() : string
++getZipCode() : int
++setName(name : string) : void
++setNumber(number : int) : void
++setStreetAddress(streetAddress : string) : void
++setCity(city : string) : void
++setState(state : string) : void
++setZipCode(zipCode : int) : void</panel_attributes><additional_attributes></additional_attributes></element></diagram>
