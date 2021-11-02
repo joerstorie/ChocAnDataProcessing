@@ -1,0 +1,203 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>740</x><y>1558</y><w>120</w><h>70</h></coordinates><panel_attributes>*Member*
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>1448</y><w>120</w><h>70</h></coordinates><panel_attributes>*Provider*
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>1535</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;40;10;40;60;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>1475</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;70;40;70;40;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1040</x><y>1038</y><w>160</w><h>70</h></coordinates><panel_attributes>*Timer*
+--
+-timeMidnight : string
+--
++sendCreateReports() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>968</y><w>130</w><h>70</h></coordinates><panel_attributes>*Manager*
+--
+-managerID : int
+--
++getManagerID() : int
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>1488</y><w>130</w><h>70</h></coordinates><panel_attributes>*Operator*
+--
+-operatorID : int
+--
++getOperatorID() : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>745</y><w>200</w><h>80</h></coordinates><panel_attributes>*Provider Terminal*
+--
+variables
+--
++prompt() : void
++selectOption(option : string) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>745</y><w>240</w><h>170</h></coordinates><panel_attributes>*Provider Controller*
+--
+-variables
+--
+-validateMember() : void
+-searchFee() : float
++billChocAn() : void
++requestProvDir() : int
++enterServiceCode(servCode : int) : string
++enterComments(comments : string) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>1485</y><w>200</w><h>80</h></coordinates><panel_attributes>*Operator Terminal*
+--
+
+--
++prompt() : void
++selectOption(option : string) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>1435</y><w>260</w><h>80</h></coordinates><panel_attributes>*Manager Provider*
+--
+-addProviders(memberSubList : List) : void
+-deleteProviders(memberSubList : List) : void
+-editProviders(memberSubList : List) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>1545</y><w>260</w><h>100</h></coordinates><panel_attributes>*Manager Member*
+--
+-addMembers(memberSubList : List) : void
+-deleteMembers(memberSubList : List) : void
+-editMembers(memberSubList : List) : void
+--
++method
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1160</x><y>445</y><w>240</w><h>350</h></coordinates><panel_attributes>*Service Record*
+--
+-currentDate : Date
+-currentTime : Time
+-serviceDate : Date
+-providerNum : int
+-memberNum : int
+-serviceCode : int
+-comments : string
+--
++getCurrentDate() : Date
++getCurrentTime() : Time
++getServiceDate() : Date
++getProviderNum() : int
++getMemberNum() : int
++getServiceCode() : int
++getComments() : string
++setCurrentDate(Date : Date) : void
++setCurrentTime(Time : Time) : void
++setServiceDate(ServiceDate : Date) : void
++setProviderNum(providerNum : int) : void
++setMemberNum(memberNum : int) : void
++setServiceCode(serviceCode : int) : void
++setComments(comments : string) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>955</y><w>200</w><h>80</h></coordinates><panel_attributes>*Manager Terminal*
+--
+
+--
++prompt() : void
++selectOption(option : string) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>748</y><w>120</w><h>70</h></coordinates><panel_attributes>*Provider*
+--
+-providerID : int
+--
++getProviderID() : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1254</x><y>975</y><w>190</w><h>80</h></coordinates><panel_attributes>*Summary Report*
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1024</x><y>855</y><w>210</w><h>150</h></coordinates><panel_attributes>*Report Controller*
+--
+variables
+--
+-createProviderReport() : void
+-createMemberReport() : void
+-createServiceReport() : void
+-createEFTReport() : void
+-createSummaryReport() : void
+-readServiceRecord() : string
++createReports() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>525</y><w>210</w><h>110</h></coordinates><panel_attributes>*Provider Directory*
+--
+-serviceCodeDirectory : Directory
+--
+-searchDirectory(service : string) : int
++getService(service : String) : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1684</x><y>495</y><w>320</w><h>200</h></coordinates><panel_attributes>*Provider Report*
+--
+-serviceList : List&lt;ProviderService&gt;
+-numConsultations : int
+-totalFee : float
+--
++getServiceList() : List&lt;ProviderService&gt;
++getService(x : int) : ProviderService
++getNumConsultations() : int
++getTotalFee() : float
++setServiceList(serviceList : List&lt;ProviderService&gt;) : void
++setService(x : int, serv : ProviderService) : void
++setNumConsultations(numConsultations : int) : void
++setTotalFee(totalFee : float) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2014</x><y>495</y><w>320</w><h>120</h></coordinates><panel_attributes>*Member Report*
+--
+-serviceList : List&lt;MemberService&gt;
+--
++getServiceList() : List&lt;MemberService&gt;
++getService(x : int) : MemberService
++setServiceList(serviceList : List&lt;MemberService&gt;) : void
++setService(x : int, serv : MemberService) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1484</x><y>565</y><w>190</w><h>80</h></coordinates><panel_attributes>*EFT Report*
+--
+-provCredit : float
+--
++setProvCredit(credit : float) : void
++getProvCredit() : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1874</x><y>25</y><w>260</w><h>310</h></coordinates><panel_attributes>*P/M Report*
+--
+-name : string
+-number : int
+-streetAddress : string
+-city : string
+-state : string
+-zipCode : int
+--
++getName() : string
++getNumber() : int
++getStreetAddress() : string
++getCity() : string
++getState() : string
++getZipCode() : int
++setName(name : string) : void
++setNumber(number : int) : void
++setStreetAddress(streetAddress : string) : void
++setCity(city : string) : void
++setState(state : string) : void
++setZipCode(zipCode : int) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1694</x><y>755</y><w>320</w><h>310</h></coordinates><panel_attributes>*Provider Service*
+--
+-serviceDate : Date
+-dateTimeReceived : string
+-memberName : string
+-memberNum : int
+-serviceCode : int
+-fee : float
+--
++getserviceDate() : Date
++getDateTimeReceived() : string
++getMemberName() : string
++getMemberNum() : int
++getServiceCode() : int
++getFee() : float
++setServiceDate(serviceDate : Date) : void
++setDateTimeReceived(dateTimeReceived : string) : void
++setMemberName(memberName : string) : void
++setMemberNum(memberNum : int) : void
++setServiceCode(serviceCode : int) : void
++setFee(fee : float) : void
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2024</x><y>755</y><w>270</w><h>170</h></coordinates><panel_attributes>*Member Service*
+--
+-serviceDate : Date
+-providerName : string
+-serviceName : string
+--
++getserviceDate() : Date
++getProviderName() : string
++getServiceName() : string
++setServiceDate(serviceDate : Date) : void
++setProviderName(providerName : string) : void
++setServiceName(serviceName : string) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2000</x><y>324</y><w>170</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90;150;90;150;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1850</x><y>324</y><w>180</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;160;90;10;90;10;170</additional_attributes></element><element><id>Relation</id><coordinates><x>2150</x><y>605</y><w>30</w><h>170</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>1850</x><y>685</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Text</id><coordinates><x>1840</x><y>695</y><w>30</w><h>30</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>1860</x><y>735</y><w>30</w><h>30</h></coordinates><panel_attributes>*
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2160</x><y>735</y><w>30</w><h>30</h></coordinates><panel_attributes>*
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>2140</x><y>615</y><w>30</w><h>30</h></coordinates><panel_attributes>1
+style=wordwrap</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1040</x><y>575</y><w>140</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>920</x><y>1378</y><w>230</w><h>310</h></coordinates><panel_attributes>*Person*
+--
+-name : string
+-number : int
+-streetAddress : string
+-city : string
+-state : string
+-zipCode : int
+--
++getName() : string
++getNumber() : int
++getStreetAddress() : string
++getCity() : string
++getState() : string
++getZipCode() : int
++setName(name : string) : void
++setNumber(number : int) : void
++setStreetAddress(streetAddress : string) : void
++setCity(city : string) : void
++setState(state : string) : void
++setZipCode(zipCode : int) : void</panel_attributes><additional_attributes></additional_attributes></element></diagram>
