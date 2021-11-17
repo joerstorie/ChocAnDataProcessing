@@ -9,7 +9,6 @@ class OperatorTerminal {
 	OperatorTerminal(){
 		userInput = new Scanner(System.in);
 	}
-	
 	public void prompt() {
 		boolean invalid = true;
 		
@@ -25,33 +24,21 @@ class OperatorTerminal {
 			}
 			 // Splitting input string into args
 			String[] args = response.split(" ");
-			
-			if(args.length < 1) {
+			int validInput=1;
+			if(args.length < 1)
 				System.out.println("Command is invalid.");
-			} else {
-				String function = args[0];
-				
-				switch(function) {
-				case "Add":
-					break;
-				case "Delete":
-					break;
-				case "Edit":
-					break;
-				default:
-					System.out.println("Command is invalid.");
-					break;
-				}
-
-			}
+			else if(args[0] != "Add" && args[0] != "Delete" && args[0] != "Edit")
+				System.out.println("Command is invalid.");
+			else if(args[1] != "Member" && args[1] != "Provider")
+				System.out.println("Command is invalid.");
+			else
+				selectOption(args[0], args[1]);
+			
 		}
 	}
 	
-	private void selectOption(String reportType, int ID) {
+	private void selectOption(String func, String personType) {
 		
 	}
 	
-	private void selectOption(String reportType) {
-		
-	}
 }
