@@ -12,6 +12,6 @@ class MemberReport {
 	private List<MemberService> serviceList;
 	
 	private List<MemberService> gatherServices() {
-		return serviceList;
+		
 	}
 }
