@@ -31,7 +31,9 @@ public class ProviderTerminal {
 			else {
 				int memberID;
 				int serviceID;
-				
+				//** implement search ChocAn Data Center
+				//memberIDmatch = ChocAnDataCenter(memberID); searches for matching code and then
+				if 
 			}
 		}
 	}
