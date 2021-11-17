@@ -1,5 +1,7 @@
-import java.util.Scanner;
+package team4package;
 
+import java.util.Scanner;
+import team4package.ReportController;
 
 class ManagerTerminal {
 	Scanner userInput;
