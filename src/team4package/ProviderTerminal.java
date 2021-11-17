@@ -31,9 +31,21 @@ public class ProviderTerminal {
 			else {
 				int memberID;
 				int serviceID;
+				int feesOwed;
 				//** implement search ChocAn Data Center
-				//memberIDmatch = ChocAnDataCenter(memberID); searches for matching code and then
-				if 
+				//searches for matching code and then returns
+				memberIDmatch = ChocAnDataCenter(memberID); 
+				if (memberID == memberIDmatch) {
+					if (feesOwed != 0 && /*days = 31*/) {
+						System.out.println("Validated");
+					}
+					else {
+						System.out.println("MemberSuspended")
+					}
+				}
+				else {
+					System.out.println("Invalid Number");
+				}
 			}
 		}
 	}
