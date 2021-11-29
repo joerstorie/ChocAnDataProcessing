@@ -12,5 +12,20 @@ class DatabaseManager {
 		// Read information from csv(s)
 	}
 	
+	public List<Provider> getProviders(){
+		return providers;
+	}
+	
+	public List<Service> getServices(){
+		return services;
+	}
+	
+	public List<Member> getMembers(){
+		return members;
+	}
+	
+	
+	
+	
 	
 }

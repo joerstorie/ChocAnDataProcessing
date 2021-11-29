@@ -24,7 +24,7 @@ class ManagerTerminal {
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
 			
-			if(response == "help") { // Allows user to be given reference information.
+			if(response.equals("help")) { // Allows user to be given reference information.
 				System.out.println("Please use the convention: [Report Type] [ID]");
 				System.out.println("Acceptable report types are: Provider, Member, Summary, EFT. Input * to log all.");
 				System.out.println("ID is only needed for report types Provider and Member.");
@@ -32,13 +32,12 @@ class ManagerTerminal {
 			}
 			 // Splitting input string into args
 			String[] args = response.split(" ");
-			System.out.println(args);
 			
 			if(args.length < 1) {
 				System.out.println("Command is invalid.");
 			} else {
 				String reportType = args[0];
-				if(reportType == "Provider" || reportType == "Member") {
+				if(reportType.equals("Provider") || reportType.equals("Member")) {
 					int parsedID;
 					if(args.length < 2) {
 						System.out.println("Please supply an ID.");
@@ -55,7 +54,7 @@ class ManagerTerminal {
 					}
 					selectOption(reportType, parsedID);
 					break;
-				} else if(reportType == "Summary" || reportType == "EFT" || reportType == "*") {
+				} else if(reportType.equals("Summary") || reportType.equals("EFT") || reportType.equals("*")) {
 					selectOption(reportType);
 					break;
 				} else {
