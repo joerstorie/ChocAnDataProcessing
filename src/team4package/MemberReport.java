@@ -11,13 +11,16 @@ class MemberReport {
 	private String streetAddress;
 	private String city;
 	private String state;
+	private int zip;
 	private List<Service> serviceList;
 	
 	
-	MemberReport(){
+	MemberReport(int srcID){
+		ID = srcID;
 		db = new DatabaseManager();
 		serviceList = Arrays.asList();
 		gatherServices();
+		gatherInfo();
 	}
 	
 	private void gatherServices() {
@@ -28,5 +31,19 @@ class MemberReport {
 			}
 		}
 		
+	}
+	
+	private void gatherInfo() {
+		List<Member> allMembers = db.getMembers();
+		for(int i = 0; i < allMembers.size(); i++) {
+			Member temp = allMembers.get(i);
+			if(temp.getID() == ID) {
+				name = temp.getName();
+				streetAddress = temp.getAddress();
+				city = temp.getCity();
+				state = temp.getState();
+				zip = temp.getZip();
+			}
+		}
 	}
 }
