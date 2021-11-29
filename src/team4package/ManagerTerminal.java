@@ -1,9 +1,16 @@
 package team4package;
 
 import java.util.Scanner;
-import team4package.ReportController;
 
 class ManagerTerminal {
+	
+	public static void main(String args[]) {
+		ManagerTerminal mt = new ManagerTerminal();
+		while(true) {
+			mt.prompt();
+		}
+	}
+	
 	Scanner userInput;
 	
 	ManagerTerminal(){
@@ -25,6 +32,7 @@ class ManagerTerminal {
 			}
 			 // Splitting input string into args
 			String[] args = response.split(" ");
+			System.out.println(args);
 			
 			if(args.length < 1) {
 				System.out.println("Command is invalid.");
@@ -92,4 +100,5 @@ class ManagerTerminal {
 		}
 		
 	}
+
 }

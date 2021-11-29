@@ -3,8 +3,9 @@ package team4package;
 import java.util.Date;
 
 
-class MemberService {
+class Service {
 	private Date serviceDate;
-	private String providerName;
+	private int providerID;
+	private int memberID;
 	private String serviceName;
 }

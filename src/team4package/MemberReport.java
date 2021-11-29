@@ -9,8 +9,8 @@ class MemberReport {
 	private String streetAddress;
 	private String city;
 	private String state;
-	private List<MemberService> serviceList;
+	private List<Service> serviceList;
 	
-	private List<MemberService> gatherServices() {	
+	private List<Service> gatherServices() {	
 	}
 }
