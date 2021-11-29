@@ -5,7 +5,7 @@ class MemberReport {
 	int memberID;
 	
 	MemberReport(int ID){
-		memberID = id;
+		memberID = ID;
 	}
 	
 }

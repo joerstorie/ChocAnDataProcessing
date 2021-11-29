@@ -19,7 +19,7 @@ class ManagerTerminal {
 			
 			if(response == "help") { // Allows user to be given reference information.
 				System.out.println("Please use the convention: [Report Type] [ID]");
-				System.out.println("Acceptable report types are: Provider, Member, Summary, EFT.");
+				System.out.println("Acceptable report types are: Provider, Member, Summary, EFT. Input * to log all.");
 				System.out.println("ID is only needed for report types Provider and Member.");
 				response = userInput.nextLine();
 			}
@@ -47,19 +47,49 @@ class ManagerTerminal {
 					}
 					selectOption(reportType, parsedID);
 					break;
-				} else if(reportType == "Summary" || reportType == "EFT") {
+				} else if(reportType == "Summary" || reportType == "EFT" || reportType == "*") {
 					selectOption(reportType);
 					break;
+				} else {
+					System.out.println("Please double check your report type entry.");
 				}
 			}
 		}
 	}
 	
 	private void selectOption(String reportType, int ID) {
+		ReportController control = new ReportController();
 		
+		switch (reportType) {
+		
+		case "Member":
+			control.createMemberReport(ID);
+			break;
+			
+		case "Provider":
+			control.createProviderReport(ID);
+			break;
+			
+		}
 	}
 	
 	private void selectOption(String reportType) {
+		ReportController control = new ReportController();
+		
+		switch (reportType) {
+		
+		case "Summary":
+			control.createSummaryReport();
+			break;
+			
+		case "EFT":
+			control.createEFTDataLog();
+			break;
+			
+		case "*":
+			control.createReports();
+			break;
+		}
 		
 	}
 }

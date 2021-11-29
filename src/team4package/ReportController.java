@@ -23,23 +23,23 @@ class ReportController{
 		}
 	}
 	
-	private void createEFTDataLog() {
+	public void createEFTDataLog() {
 		EFTDataLog eft = new EFTDataLog();
 		eft.saveLog();
 	}
 	
-	private void createMemberReport(int ID) {
+	public void createMemberReport(int ID) {
 		MemberReport mr = new MemberReport(ID);
 		mr.saveReport();
 		
 	}
 	
-	private void createProviderReport(int ID) {
+	public void createProviderReport(int ID) {
 		ProviderReport pr = new ProviderReport(ID);
 		pr.saveReport();
 	}
 	
-	private void createSummaryReport() {
+	public void createSummaryReport() {
 		SummaryReport sr = new SummaryReport();
 		sr.saveReport();
 	}
@@ -51,5 +51,6 @@ class ReportController{
 	
 	private int[] getProviders() {
 		int[] temp = new int[]{2, 3, 4};
+		return temp;
 	}
 }
