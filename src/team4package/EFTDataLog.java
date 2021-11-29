@@ -5,12 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.List;
 
 class EFTDataLog {
-	double provCredit = 0.00;
-
-	public double getProvCredit(double provCredit) {
-		return provCredit;
+	DatabaseManager db;
+	
+	EFTDataLog(){
+		db = new DatabaseManager();
 	}
 
 	public void saveLog() throws IOException {
@@ -18,13 +19,15 @@ class EFTDataLog {
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("EFT Data Log\n");
 		
-		List<Provider> providers = getProviders();
+		List<Provider> providers = db.getProviders();
 		for (int i = 0; i < providers.size(); i++) {
 			int currFee = providers.get(i).getTotalFee();
-			pw.print(providers.get(i).name + "----" + currFee);
+			pw.print(providers.get(i).getName() + "----" + currFee);
 			pw.print("\n");
 		}
 
 		pw.close();
 	}
+	
+	
 }
