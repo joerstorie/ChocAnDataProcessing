@@ -11,6 +11,12 @@ class MemberReport {
 	private String state;
 	private List<Service> serviceList;
 	
-	private List<Service> gatherServices() {	
+	private DatabaseManager db;
+	
+	private List<Service> gatherServices() {
+		return db.services.get();
 	}
+	
+	
+	
 }
