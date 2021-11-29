@@ -11,7 +11,6 @@ class MemberReport {
 	private String state;
 	private List<MemberService> serviceList;
 	
-	private List<MemberService> gatherServices() {
-		
+	private List<MemberService> gatherServices() {	
 	}
 }
