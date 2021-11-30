@@ -3,6 +3,9 @@ package team4package;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.io.FileWriter;
+import java.time.LocalDate;
+import java.io.PrintWriter;
 
 class MemberReport {
 	DatabaseManager db;
@@ -14,6 +17,7 @@ class MemberReport {
 	MemberReport(Member src) throws IOException{
 		db = DatabaseManager.getInstance();
 		member = src;
+		gatherServices();
 	}
 	
 	private void gatherServices() {
@@ -25,11 +29,12 @@ class MemberReport {
 		}
 		
 	}
-	public void saveReport() throws ExceptionIO {
-		FileWriter fw = new FileWriter("EFTDataLog.txt");
+	
+	public void saveReport() throws IOException {
+		String name = member.getName();
+		FileWriter fw = new FileWriter("./outputs/" + name.replace(" ", "") + ".txt");
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Member Report\n\n");
-		String name = member.getName();
 		pw.print(name + "\n");
 		int ID = member.getID();
 		pw.print(ID + "\n");
@@ -42,11 +47,15 @@ class MemberReport {
 		String zip = member.getZip();
 		pw.print(zip + "\n\n");
 		
-		Date date = member.getDate();
-		pw.print(date + "\n");
-		Provider provider = member.getProviderName();
-		pw.print(provider.getName() + "\n");
-		pw.print(service.getName() + "\n");
+		for(int i = 0; i < serviceList.size(); i++) {
+			Service curService = serviceList.get(i);
+			LocalDate date = curService.getDate();
+			pw.print(date + "\n");
+			Provider provider = db.fetchProviderByID(curService.getProviderID());
+			pw.print(provider.getName() + "\n");
+			pw.print(curService.getName() + "\n");
+		}
+		pw.close();
 	}
-	pw.close();
+	
 }

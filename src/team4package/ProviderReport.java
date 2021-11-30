@@ -4,20 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 class ProviderReport {
+	DatabaseManager db;
 	private Provider provider;
 	
-	ProviderReport(Provider src){
+	ProviderReport(Provider src) throws IOException{
+		db = DatabaseManager.getInstance();
 		provider = src;
 	}
 	
 	public void saveReport() throws IOException {
-		FileWriter fw = new FileWriter("EFTDataLog.txt");
+		String name = provider.getName();
+		FileWriter fw = new FileWriter("./outputs/" + name.replace(" ", "") + ".txt");
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Provider Report\n\n");
-		String name = provider.getName();
 		pw.print(name + "\n");
 		int ID = provider.getID();
 		pw.print(ID + "\n");
@@ -29,23 +33,21 @@ class ProviderReport {
 		pw.print(state + "\n");
 		String zip = provider.getZip();
 		pw.print(zip + "\n\n");
+		LocalDateTime atm = LocalDateTime.now();
 		
-		List<Service> services = getListServices();
+		List<Service> services = provider.getServices();
 		for (int i = 0; i < services.size(); i++) {
-			Date date = services.getDate();
+			Service curService = services.get(i);
+			LocalDate date = curService.getDate();
 			pw.print(date + "\n");
-			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			Date currDate = new Date();
-			pw.print(currDate + "\n");
-			Member currMember = services.getMember();
-			pw.print(currMember.getName() + "\n");
-			pw.print(currMember.getID() + "\n");
-			pw.print(services.getCode() + "\n");
-			pw.print(services.getFee() + "\n");
-			pw.print(providers.getNumServices() + "\n");
-			pw.print(providers.getTotalFee() + "\n");
-			
-			
+			pw.print(atm + "\n");
+			Member curMember = db.fetchMemberByID(curService.getMemberID());
+			pw.print(curMember.getName() + "\n");
+			pw.print(curMember.getID() + "\n");
+			pw.print(curService.getServiceID() + "\n");
+			pw.print(curService.getFee() + "\n");
+			pw.print(provider.getNumServices() + "\n");
+			pw.print(provider.getTotalFee() + "\n");
 		}
 		pw.close();
 	

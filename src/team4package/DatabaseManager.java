@@ -50,7 +50,7 @@ class DatabaseManager {
 		
 		while((row = servicesReader.readLine()) != null) {
 			String[] data = row.split(",");
-			Service newService = new Service(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], LocalDate.parse(data[4]));
+			Service newService = new Service(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), LocalDate.parse(data[3]));
 			services.add(newService);
 		}
 		
