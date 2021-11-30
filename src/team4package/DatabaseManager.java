@@ -12,7 +12,6 @@ class DatabaseManager {
 	DatabaseManager(){
 		// Read information from csv(s)
 	}
-	
 
 	public List<Provider> getProviders(){
 		return providers;
@@ -26,6 +25,22 @@ class DatabaseManager {
 		return members;
 	}
 	
+	boolean CheckID(int memberID) {
+		int memberIDmatch;
+		
+		if (/* match found */) {
+			return true;
+		}
+		else (/* match not found*/) {
+			return false;
+		}
+	}
 	
+	/*int CheckMemberFee(int memberID) {
+		int memberFee;
+		
+		return memberFee;
+	}*/
+}
 	
 	
