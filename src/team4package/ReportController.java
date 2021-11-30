@@ -38,9 +38,27 @@ class ReportController{
 		
 	}
 	
+	public boolean checkMemID(int ID) {
+		return db.validateMemberID(ID);
+	}
+	
+	public boolean checkProvID(int ID) {
+		return db.validateProviderID(ID);
+	}
+	
+	public void createMemberReport(int ID) throws IOException {
+		Member mem = db.fetchMemberByID(ID);
+		createMemberReport(mem);
+	}
+	
 	public void createProviderReport(Provider src) throws IOException {
 		ProviderReport pr = new ProviderReport(src);
 		pr.saveReport();
+	}
+	
+	public void createProviderReport(int ID) throws IOException {
+		Provider prov = db.fetchProviderByID(ID);
+		createProviderReport(prov);
 	}
 	
 	public void createSummaryReport() throws IOException {
