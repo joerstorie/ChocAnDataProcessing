@@ -1,23 +1,29 @@
 package team4package;
 
 import java.io.IOException;
+import java.util.List;
 
 class ReportController{
+	DatabaseManager db;
+	private List<Provider> providers;
+	private List<Member> members;
 	
-	ReportController(){}
+	ReportController(){
+		db = new DatabaseManager();
+		setProviders();
+		setMembers();
+	}
 	
 	public void createReports() throws IOException {
 		createEFTDataLog();
 		createSummaryReport();
 		
-		int[] memberIDS = getMembers();
-		for(int i = 0; i < memberIDS.length; i++) {
-			createMemberReport(memberIDS[i]);
+		for(int i = 0; i < members.size(); i++) {
+			createMemberReport(members.get(i));
 		}
 		
-		int[] providerIDS = getProviders();
-		for(int i = 0; i < providerIDS.length; i++) {
-			createProviderReport(providerIDS[i]);
+		for(int i = 0; i < providers.size(); i++) {
+			createProviderReport(providers.get(i));
 		}
 	}
 	
@@ -26,29 +32,27 @@ class ReportController{
 		eft.saveLog();
 	}
 	
-	public void createMemberReport(int ID) {
-		MemberReport mr = new MemberReport(ID);
+	public void createMemberReport(Member src) throws IOException {
+		MemberReport mr = new MemberReport(src);
 		mr.saveReport();
 		
 	}
 	
-	public void createProviderReport(int ID) {
-		ProviderReport pr = new ProviderReport(ID);
+	public void createProviderReport(Provider src) throws IOException {
+		ProviderReport pr = new ProviderReport(src);
 		pr.saveReport();
 	}
 	
-	public void createSummaryReport() {
+	public void createSummaryReport() throws IOException {
 		SummaryReport sr = new SummaryReport();
 		sr.saveReport();
 	}
 	
-	private int[] getMembers() {
-		int[] temp = new int[]{1, 2, 3};
-		return temp;
+	private void setMembers() {
+		members = db.getMembers();
 	}
 	
-	private int[] getProviders() {
-		int[] temp = new int[]{2, 3, 4};
-		return temp;
+	private void setProviders() {
+		providers = db.getProviders();
 	}
 }

@@ -6,13 +6,15 @@ class Member{
 	private String city;	
 	private String state;
 	private int zip;
+	private String name;
 	
-	Member(int srcID, String srcStreetAddress, String srcCity, String srcState, int srcZip){
+	Member(int srcID, String srcStreetAddress, String srcCity, String srcState, int srcZip, String srcName){
 		ID = srcID;
 		streetAddress = srcStreetAddress;
 		city = srcCity;
 		state = srcState;
 		zip = srcZip;
+		name = srcName;
 	}
 	
 	public int getZip() {
@@ -33,5 +35,9 @@ class Member{
 	
 	public String getState() {
 		return state;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

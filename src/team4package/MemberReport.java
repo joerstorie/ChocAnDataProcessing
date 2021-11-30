@@ -6,43 +6,21 @@ import java.util.List;
 class MemberReport {
 	DatabaseManager db;
 	
-	private String name;
-	private int ID;
-	private String streetAddress;
-	private String city;
-	private String state;
-	private int zip;
+	private Member member;
 	private List<Service> serviceList;
 
 	
-	MemberReport(int srcID){
-		ID = srcID;
-		db = new DatabaseManager();
-		serviceList = Arrays.asList();
-		gatherServices();
-		gatherInfo();
+	MemberReport(Member src){
+		member = src;
 	}
 	
 	private void gatherServices() {
 		List<Service> allServices = db.getServices();
 		for(int i = 0; i < allServices.size(); i++) {
-			if(allServices.get(i).getMemberID() == ID) {
+			if(allServices.get(i).getMemberID() == member.getID()) {
 				serviceList.add(allServices.get(i));
 			}
 		}
 	}
 	
-	private void gatherInfo() {
-		List<Member> allMembers = db.getMembers();
-		for(int i = 0; i < allMembers.size(); i++) {
-			Member temp = allMembers.get(i);
-			if(temp.getID() == ID) {
-				name = temp.getName();
-				streetAddress = temp.getAddress();
-				city = temp.getCity();
-				state = temp.getState();
-				zip = temp.getZip();
-			}
-		}
-	}
 }

@@ -8,9 +8,9 @@ class Provider{
 	private int ID;
 	private String name;
 	
-	Provider(int srcID, String srcName){
-		db = new DatabaseManager();
+	Provider(int srcID, int srcFee, String srcName){
 		ID = srcID;
+		fee = srcFee;
 		name = srcName;
 	}
 	
@@ -26,7 +26,23 @@ class Provider{
 		return total;
 	}
 	
+	public int getNumServices() {
+		int num = 0;
+		
+		List<Service> services = db.getServices();
+		for(int i = 0; i < services.size(); i++) {
+			if(services.get(i).getProviderID() == ID) {
+				num++;
+			}
+		}
+		return num;
+	}
+	
 	public String getName() {
 		return name;
+	}
+	
+	public int getID() {
+		return ID;
 	}
 }

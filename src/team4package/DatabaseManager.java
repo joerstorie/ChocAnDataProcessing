@@ -5,6 +5,7 @@ import java.util.List;
 class DatabaseManager {
 	
 	private List<Member> members;
+	//private List<Member> fees;
 	private List<Provider> providers;
 	private List<Service> services;
 	
@@ -12,6 +13,7 @@ class DatabaseManager {
 		// Read information from csv(s)
 	}
 	
+
 	public List<Provider> getProviders(){
 		return providers;
 	}
@@ -27,5 +29,3 @@ class DatabaseManager {
 	
 	
 	
-	
-}
