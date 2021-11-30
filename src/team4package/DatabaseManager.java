@@ -1,5 +1,6 @@
 package team4package;
 
+import java.util.Arrays;
 import java.util.List;
 
 class DatabaseManager {
@@ -20,6 +21,31 @@ class DatabaseManager {
 	
 	public List<Service> getServices(){
 		return services;
+	}
+	
+	public List<Service> getServicesByID(int ID, String type){
+		List<Service> temp = Arrays.asList();
+		
+		switch(type) {
+		
+		case "Provider":
+			for(int i = 0; i < services.size(); i++) {
+				if(services.get(i).getProviderID() == ID) {
+					temp.add(services.get(i));
+				}
+			}
+			break;
+		
+		case "Member":
+			for(int i = 0; i < services.size(); i++) {
+				if(services.get(i).getMemberID() == ID) {
+					temp.add(services.get(i));
+				}
+			}
+			break;
+		}
+		
+		return temp;
 	}
 	
 	public List<Member> getMembers(){

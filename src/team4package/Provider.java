@@ -38,6 +38,10 @@ class Provider{
 		return num;
 	}
 	
+	public List<Service> getServices(){
+		return db.getServicesByID(ID, "Provider");
+	}
+	
 	public String getName() {
 		return name;
 	}
