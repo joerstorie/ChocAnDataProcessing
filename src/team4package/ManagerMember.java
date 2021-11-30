@@ -8,21 +8,10 @@ import java.io.IOException;
 class ManagerMember {
 	Scanner userInput;
 	DatabaseManager db;
-	private List<Provider> providers;
-	private List<Member> members;
-	
-	private void setMembers() {
-		members = db.getMembers();
-	}
-	private void setProviders() {
-		providers = db.getProviders();
-	}
-	
+
 	ManagerMember() throws IOException{
 		userInput = new Scanner(System.in);
 		db = DatabaseManager.getInstance();
-		setProviders();
-		setMembers();
 	}
 	
 	private String promptString(String item) {
@@ -85,6 +74,7 @@ class ManagerMember {
 	public void deleteMember() {
 		System.out.println("Identify the member you wish to delete");
 		int ID = promptInt("ID");
+		
 		System.out.println("Deleting member...");
 	}
 	
