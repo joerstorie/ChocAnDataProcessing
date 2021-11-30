@@ -84,7 +84,7 @@ class ManagerProvider {
 	public void deleteProvider() throws IOException {
 		System.out.println("Identify the provider you wish to delete");
 		int ID = promptInt("ID");
-		if(db.doesProviderExist(ID)) { // if provider exists
+		if(db.validateProviderID(ID)) { // if provider exists
 			System.out.println("Found provider by the ID \"" + ID + "\", deleting...");
 			db.deleteProvider(ID);
 			System.out.println("Delete successful.");
@@ -96,7 +96,7 @@ class ManagerProvider {
 	public void editProvider() throws IOException {
 		System.out.println("Identify the provider you wish to edit");
 		int ID = promptInt("ID");
-		if(db.doesProviderExist(ID)) { // if member exists
+		if(db.validateProviderID(ID)) { // if member exists
 			System.out.println("Found provider by the ID \"" + ID);
 			System.out.println("Enter new provider details...");
 			Provider replacement = newProvider(ID);
