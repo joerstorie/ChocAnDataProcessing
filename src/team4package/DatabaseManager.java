@@ -236,6 +236,10 @@ class DatabaseManager {
 		}
 		return 0;
 	}
+	
+	public void addService(Service src) {
+		services.add(src);
+	}
 }
 	
 	

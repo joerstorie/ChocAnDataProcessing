@@ -2,6 +2,7 @@ package team4package;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 class Service {
@@ -10,12 +11,14 @@ class Service {
 	private int memberID;
 	private int serviceID;
 	private String comments = "";
+	private LocalDateTime inputDTime;
 	
-	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate){
+	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime){
 		serviceDate = srcDate;
 		providerID = srcProvID;
 		memberID = srcMemID;
 		serviceID = srcID;
+		inputDTime = srcDTime;
 		
 	}
 	

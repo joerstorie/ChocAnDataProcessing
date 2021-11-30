@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class ProviderTerminal {
@@ -58,7 +59,7 @@ public class ProviderTerminal {
 	private void applyService(int memberID) {
 		System.out.println("Please input the date of service using the format \"yyyy-mm-dd\"");
 		boolean invalid = true;
-		LocalDate date;
+		LocalDate date = LocalDate.parse("1970-01-01");
 		while(invalid) {
 			String response = userInput.nextLine();
 			try {
@@ -108,6 +109,24 @@ public class ProviderTerminal {
 			}
 		}
 		
+		int provID = 1;
+		boolean validated = false;
+		while(!validated) {
+			System.out.println("Please input provider ID.");
+			try {
+				provID = userInput.nextInt();
+				validated = db.validateProviderID(provID);
+			} catch (InputMismatchException ime) {
+				System.out.println("Only numeric inputs are allowed.");
+			}
+		}
+		
+		LocalDateTime curDTime = LocalDateTime.now();
+		
+		Service newService = new Service(servCode, provID, memberID, date, curDTime);
+		newService.logService();
+		// Adds to database (final change)
+		db.addService(newService);
 		
 	}
 }
