@@ -12,7 +12,6 @@ public class ProviderTerminal {
 	}
 	
 	Scanner userInput;
-
 	
 	ProviderTerminal() {
 		userInput = new Scanner(System.in);

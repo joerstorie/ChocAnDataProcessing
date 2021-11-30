@@ -53,10 +53,16 @@ class ManagerTerminal {
 							continue;
 						}
 					}
-					selectOption(reportType, parsedID);
-					break;
+					boolean completed = selectOption(reportType, parsedID);
+					if(completed) {
+						System.out.println("Report created.");
+						break;
+					} else {
+						System.out.println("No " + reportType + " was found with this ID.");
+					}
 				} else if(reportType.equals("Summary") || reportType.equals("EFT") || reportType.equals("*")) {
 					selectOption(reportType);
+					System.out.println("Report(s) created.");
 					break;
 				} else {
 					System.out.println("Please double check your report type entry.");
@@ -65,20 +71,33 @@ class ManagerTerminal {
 		}
 	}
 	
-	private void selectOption(String reportType, int ID) throws IOException {
+	private boolean selectOption(String reportType, int ID) throws IOException {
 		ReportController control = new ReportController();
+		boolean verified = false;
 		
 		switch (reportType) {
 		
 		case "Member":
-			control.createMemberReport(ID);
-			break;
+			verified = control.checkMemID(ID);
+			if(verified) {
+				control.createMemberReport(ID);
+				return true;
+			} else {
+				return false;
+			}
+			
 			
 		case "Provider":
-			control.createProviderReport(ID);
-			break;
+			verified = control.checkProvID(ID);
+			if(verified) {
+				control.createProviderReport(ID);
+				return true;
+			} else {
+				return false;
+			}
 			
 		}
+		return false;
 	}
 	
 	private void selectOption(String reportType) throws IOException {
