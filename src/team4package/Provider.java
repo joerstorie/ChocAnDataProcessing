@@ -1,7 +1,7 @@
 package team4package;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 class Provider{
 	DatabaseManager db;
@@ -26,7 +26,7 @@ class Provider{
 	public int getTotalFee() throws IOException {
 		int total = 0;
 		
-		List<Service> services = db.getServices();
+		ArrayList<Service> services = db.getServices();
 		for(int i = 0; i < services.size(); i++) {
 			if(services.get(i).getProviderID() == ID) {
 				total += services.get(i).getFee();
@@ -38,7 +38,7 @@ class Provider{
 	public int getNumServices() {
 		int num = 0;
 		
-		List<Service> services = db.getServices();
+		ArrayList<Service> services = db.getServices();
 		for(int i = 0; i < services.size(); i++) {
 			if(services.get(i).getProviderID() == ID) {
 				num++;
@@ -47,7 +47,7 @@ class Provider{
 		return num;
 	}
 	
-	public List<Service> getServices(){
+	public ArrayList<Service> getServices(){
 		return db.getServicesByID(ID, "Provider");
 	}
 	

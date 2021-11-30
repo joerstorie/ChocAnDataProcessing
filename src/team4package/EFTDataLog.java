@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 
 class EFTDataLog {
 	DatabaseManager db;
@@ -20,10 +20,10 @@ class EFTDataLog {
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("EFT Data Log\n\n");
 		
-		List<Provider> providers = db.getProviders();
+		ArrayList<Provider> providers = db.getProviders();
 		for (int i = 0; i < providers.size(); i++) {
 			int currFee = providers.get(i).getTotalFee();
-			pw.print(providers.get(i).getName() + "----" + "$", currFee);
+			pw.print(providers.get(i).getName() + "----" + "$" + currFee);
 			pw.print("\n");
 		}
 

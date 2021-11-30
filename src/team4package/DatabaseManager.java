@@ -1,7 +1,9 @@
 package team4package;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -11,21 +13,21 @@ import java.time.LocalDate;
 
 class DatabaseManager {
 	
-	private List<Member> members;
+	private ArrayList<Member> members = new ArrayList<>();
 	//private List<Member> fees;
-	private List<Provider> providers;
-	private List<Service> services;
-	private List<ServiceType> serviceTypes;
-	private static DatabaseManager instance = null;
+	private ArrayList<Provider> providers = new ArrayList<>();
+	private ArrayList<Service> services = new ArrayList<>();
+	private ArrayList<ServiceType> serviceTypes = new ArrayList<>();
+	private static final DatabaseManager instance = new DatabaseManager();
 	
 	public static DatabaseManager getInstance() throws IOException {
-		if(instance == null) {
-			instance = new DatabaseManager();
-		}
 		return instance;
 	}
 	
-	DatabaseManager() throws IOException{
+	private DatabaseManager() {
+	}
+	
+	public void importDatabase() throws IOException {
 		// Read information from csv(s)
 		BufferedReader membersReader = new BufferedReader(new FileReader("./data/members.csv"));
 		BufferedReader providersReader = new BufferedReader(new FileReader("./data/providers.csv"));
@@ -59,19 +61,28 @@ class DatabaseManager {
 			ServiceType newType = new ServiceType(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]));
 			serviceTypes.add(newType);
 		}
+		
+		membersReader.close();
+		providersReader.close();
+		servicesReader.close();
+		serviceTypesReader.close();
+	}
+	
+	public void exportDatabase() throws IOException {
+		// Implement this
 	}
 	
 
-	public List<Provider> getProviders(){
+	public ArrayList<Provider> getProviders(){
 		return providers;
 	}
 	
-	public List<Service> getServices(){
+	public ArrayList<Service> getServices(){
 		return services;
 	}
 	
-	public List<Service> getServicesByID(int ID, String type){
-		List<Service> temp = Arrays.asList();
+	public ArrayList<Service> getServicesByID(int ID, String type){
+		ArrayList<Service> temp = new ArrayList<>();
 		
 		switch(type) {
 		
@@ -94,7 +105,7 @@ class DatabaseManager {
 		return temp;
 	}
 	
-	public List<Member> getMembers(){
+	public ArrayList<Member> getMembers(){
 		return members;
 	}
 	
@@ -143,6 +154,18 @@ class DatabaseManager {
 	public void displayProviders() {
 		for(int i = 0; i < providers.size(); i++) {
 			System.out.println("Provider Name: " + providers.get(i).getName() + " Provider ID: " + providers.get(i).getID());
+		}
+	}
+	
+	public void displayServices() throws IOException {
+		for(int i = 0; i < services.size(); i++) {
+			System.out.println("Service Name: " + services.get(i).getName() + " Member Name: " + services.get(i).getMemberName());
+		}
+	}
+	
+	public void displayServiceTypes() throws IOException {
+		for(int i = 0; i < serviceTypes.size(); i++) {
+			System.out.println("Service Name: " + serviceTypes.get(i).getName() + " Fee: " + serviceTypes.get(i).getFee());
 		}
 	}
 

@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.ArrayList;
 
 class ProviderReport {
 	DatabaseManager db;
@@ -19,12 +19,12 @@ class ProviderReport {
 	
 	public void saveReport() throws IOException {
 		String name = provider.getName();
-		FileWriter fw = new FileWriter("./outputs/" + name.replace(" ", "") + ".txt");
+		FileWriter fw = new FileWriter(name.replace(" ", "") + ".txt");
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Provider Report\n\n");
-		pw.print(name + "\n");
+		pw.print("Provider Name: " + name + "\n");
 		int ID = provider.getID();
-		pw.print(ID + "\n");
+		pw.print("Provider ID: " + ID + "\n");
 		String address = provider.getAddress();
 		pw.print(address + "\n");
 		String city = provider.getCity();
@@ -35,20 +35,20 @@ class ProviderReport {
 		pw.print(zip + "\n\n");
 		LocalDateTime atm = LocalDateTime.now();
 		
-		List<Service> services = provider.getServices();
+		ArrayList<Service> services = provider.getServices();
 		for (int i = 0; i < services.size(); i++) {
 			Service curService = services.get(i);
 			LocalDate date = curService.getDate();
-			pw.print(date + "\n");
-			pw.print(atm + "\n");
+			pw.print("Date of Service: " + date + "\n");
+			pw.print("Current Date/Time: " + atm + "\n");
 			Member curMember = db.fetchMemberByID(curService.getMemberID());
-			pw.print(curMember.getName() + "\n");
-			pw.print(curMember.getID() + "\n");
-			pw.print(curService.getServiceID() + "\n");
-			pw.print(curService.getFee() + "\n");
-			pw.print(provider.getNumServices() + "\n");
-			pw.print(provider.getTotalFee() + "\n");
+			pw.print("Member Name: " + curMember.getName() + "\n");
+			pw.print("Member ID: " + curMember.getID() + "\n");
+			pw.print("Service ID: " + curService.getServiceID() + "\n");
+			pw.print("Service Fee: " + curService.getFee() + "\n\n");
 		}
+		pw.print("Total Service Quantity: " + provider.getNumServices() + "\n");
+		pw.print("Total Provider Fees: " + provider.getTotalFee() + "\n");
 		pw.close();
 	
 		

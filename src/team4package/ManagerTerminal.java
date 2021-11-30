@@ -1,6 +1,7 @@
 package team4package;
 
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.File;
 
@@ -8,9 +9,9 @@ class ManagerTerminal {
 	
 	public static void main(String args[]) throws IOException {
 		ManagerTerminal mt = new ManagerTerminal();
-		while(true) {
-			mt.prompt();
-		}
+		DatabaseManager db = DatabaseManager.getInstance();
+		db.importDatabase();
+		mt.prompt();
 	}
 	
 	Scanner userInput;
@@ -20,9 +21,9 @@ class ManagerTerminal {
 	}
 	
 	public void prompt() throws IOException {
-		boolean invalid = true;
+		boolean going = true;
 		
-		while(invalid) { // Until input is valid, prompt:
+		while(going) { // Until input is valid, prompt:
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
 			
@@ -30,7 +31,14 @@ class ManagerTerminal {
 				System.out.println("Please use the convention: [Report Type] [ID]");
 				System.out.println("Acceptable report types are: Provider, Member, Summary, EFT. Input * to log all.");
 				System.out.println("ID is only needed for report types Provider and Member.");
+				System.out.println("Type \"exit\" to leave the terminal.");
 				response = userInput.nextLine();
+			}
+			
+			if(response.equals("exit")) {
+				System.out.println("Exiting terminal.");
+				going = false;
+				return;
 			}
 			 // Splitting input string into args
 			String[] args = response.split(" ");
@@ -57,14 +65,16 @@ class ManagerTerminal {
 					boolean completed = selectOption(reportType, parsedID);
 					if(completed) {
 						System.out.println("Report created.");
-						break;
 					} else {
-						System.out.println("No " + reportType + " was found with this ID.");
+						System.out.println("Failed to create Report(s).");
 					}
 				} else if(reportType.equals("Summary") || reportType.equals("EFT") || reportType.equals("*")) {
-					selectOption(reportType);
-					System.out.println("Report(s) created.");
-					break;
+					boolean completed = selectOption(reportType);
+					if(completed) {
+						System.out.println("Report(s) created.");
+					} else {
+						System.out.println("Failed to create Report(s).");
+					}
 				} else {
 					System.out.println("Please double check your report type entry.");
 				}
@@ -81,9 +91,15 @@ class ManagerTerminal {
 		case "Member":
 			verified = control.checkMemID(ID);
 			if(verified) {
-				control.createMemberReport(ID);
-				return true;
+				try {
+					control.createMemberReport(ID);
+					return true;
+				} catch (FileNotFoundException nf) {
+					System.out.println(nf);
+					return false;
+				}
 			} else {
+				System.out.println("No " + reportType + " was found with this ID.");
 				return false;
 			}
 			
@@ -101,23 +117,40 @@ class ManagerTerminal {
 		return false;
 	}
 	
-	private void selectOption(String reportType) throws IOException {
+	private boolean selectOption(String reportType) throws IOException {
 		ReportController control = new ReportController();
 		
 		switch (reportType) {
 		
 		case "Summary":
-			control.createSummaryReport();
-			break;
+			try {
+				control.createSummaryReport();
+				return true;
+			} catch (FileNotFoundException nf) {
+				System.out.println(nf);
+				return false;
+			} finally {}
 			
 		case "EFT":
-			control.createEFTDataLog();
-			break;
+			try {
+				control.createEFTDataLog();
+				return true;
+			} catch (FileNotFoundException nf) {
+				System.out.println(nf);
+				return false;
+			} finally {}
 			
 		case "*":
-			control.createReports();
-			break;
+			try {
+				control.createReports();
+				return true;
+			} catch (FileNotFoundException nf) {
+				System.out.println(nf);
+				return false;
+			} finally {}
 		}
+		
+		return true;
 		
 	}
 

@@ -2,7 +2,7 @@ package team4package;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.io.PrintWriter;
@@ -11,7 +11,7 @@ class MemberReport {
 	DatabaseManager db;
 	
 	private Member member;
-	private List<Service> serviceList;
+	private ArrayList<Service> serviceList;
 	
 	
 	MemberReport(Member src) throws IOException{
@@ -21,23 +21,17 @@ class MemberReport {
 	}
 	
 	private void gatherServices() {
-		List<Service> allServices = db.getServices();
-		for(int i = 0; i < allServices.size(); i++) {
-			if(allServices.get(i).getMemberID() == member.getID()) {
-				serviceList.add(allServices.get(i));
-			}
-		}
-		
+		serviceList = db.getServicesByID(member.getID(), "Member");
 	}
 	
 	public void saveReport() throws IOException {
 		String name = member.getName();
-		FileWriter fw = new FileWriter("./outputs/" + name.replace(" ", "") + ".txt");
+		FileWriter fw = new FileWriter(name.replace(" ", "") + ".txt");
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Member Report\n\n");
 		pw.print(name + "\n");
 		int ID = member.getID();
-		pw.print(ID + "\n");
+		pw.print("ID: " + ID + "\n");
 		String address = member.getAddress();
 		pw.print(address + "\n");
 		String city = member.getCity();
@@ -52,8 +46,8 @@ class MemberReport {
 			LocalDate date = curService.getDate();
 			pw.print(date + "\n");
 			Provider provider = db.fetchProviderByID(curService.getProviderID());
-			pw.print(provider.getName() + "\n");
-			pw.print(curService.getName() + "\n");
+			pw.print("Provider: " + provider.getName() + "\n");
+			pw.print("Service: " + curService.getName() + "\n");
 		}
 		pw.close();
 	}

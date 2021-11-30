@@ -1,13 +1,13 @@
 // Trent Boughner
 package team4package;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.io.IOException;
 
 public class ProviderController {
 	DatabaseManager db;
-	private List<Provider> providers;
-	private List<Member> members;
+	private ArrayList<Provider> providers;
+	private ArrayList<Member> members;
 	
 	ProviderController() throws IOException {
 		db = DatabaseManager.getInstance();
