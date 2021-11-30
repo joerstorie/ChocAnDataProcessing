@@ -84,7 +84,7 @@ class ManagerMember {
 	public void deleteMember() throws IOException {
 		System.out.println("Identify the member you wish to delete");
 		int ID = promptInt("ID");
-		if(db.doesMemberExist(ID)) { // if member exists
+		if(db.validateMemberID(ID)) { // if member exists
 			System.out.println("Found member by the ID \"" + ID + "\", deleting...");
 			db.deleteMember(ID);
 			System.out.println("Delete successful.");
@@ -96,7 +96,7 @@ class ManagerMember {
 	public void editMember() throws IOException {
 		System.out.println("Identify the member you wish to edit");
 		int ID = promptInt("ID");
-		if(db.doesMemberExist(ID)) { // if member exists
+		if(db.validateMemberID(ID)) { // if member exists
 			System.out.println("Found member by the ID \"" + ID);
 			System.out.println("Enter new member details...");
 			Member replacement = newMember(ID);
