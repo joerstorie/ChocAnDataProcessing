@@ -32,21 +32,37 @@ class DatabaseManager {
 				return true;
 			}
 		}
+		return false;
 	}
 	
 	public boolean validateProviderID(int ID) {
-		
+		for(int i = 0; i < providers.size(); i++) {
+			if(providers.get(i).getID() == ID) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	public Member fetchMemByID(int ID) {
+	public Member fetchMemberByID(int ID) {
 		for(int i = 0; i < members.size(); i++) {
 			if(members.get(i).getID() == ID) {
 				return members.get(i);
 			}
 		}
-		System.out.println("No member found.");
-		
+		return members.get(0);
 	}
+	
+	public Provider fetchProviderByID(int ID) {
+		for(int i = 0; i < providers.size(); i++) {
+			if(providers.get(i).getID() == ID) {
+				return providers.get(i);
+			}
+		}
+		return providers.get(0);
+	}
+
+}
 	
 	
 	
