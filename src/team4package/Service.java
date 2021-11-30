@@ -9,6 +9,7 @@ class Service {
 	private int providerID;
 	private int memberID;
 	private int serviceID;
+	private String comments = "";
 	
 	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate){
 		serviceDate = srcDate;
@@ -16,6 +17,10 @@ class Service {
 		memberID = srcMemID;
 		serviceID = srcID;
 		
+	}
+	
+	public void addComments(String srcComments) {
+		comments = srcComments;
 	}
 	
 	public int getProviderID() {

@@ -7,13 +7,6 @@ import java.io.File;
 
 class ManagerTerminal {
 	
-	public static void main(String args[]) throws IOException {
-		ManagerTerminal mt = new ManagerTerminal();
-		DatabaseManager db = DatabaseManager.getInstance();
-		db.importDatabase();
-		mt.prompt();
-	}
-	
 	Scanner userInput;
 	
 	ManagerTerminal(){
@@ -22,7 +15,6 @@ class ManagerTerminal {
 	
 	public void prompt() throws IOException {
 		boolean going = true;
-		
 		while(going) { // Until input is valid, prompt:
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();

@@ -1,6 +1,6 @@
 Summary Report
 
-DCH----2services----$4235
+DCH----2 services----$4235
 
 Total Number of Providers: 1
 Total Number of Services: 2

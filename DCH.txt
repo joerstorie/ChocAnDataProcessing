@@ -8,14 +8,14 @@ Alabama
 35408
 
 Date of Service: 2019-09-23
-Current Date/Time: 2021-11-30T02:04:31.454
+Current Date/Time: 2021-11-30T15:08:30.040
 Member Name: Riley Parker
 Member ID: 1
 Service ID: 3
 Service Fee: 35
 
 Date of Service: 2019-08-12
-Current Date/Time: 2021-11-30T02:04:31.454
+Current Date/Time: 2021-11-30T15:08:30.040
 Member Name: Trent Boughner
 Member ID: 2
 Service ID: 2
