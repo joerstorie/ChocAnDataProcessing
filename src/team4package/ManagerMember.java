@@ -64,26 +64,56 @@ class ManagerMember {
 		return new Member(ID, name, streetAddress, city, state, zip);
 	}
 	
+	private Member newMember(int srcID) { // builds a new member and returns it, special version for edit
+		String name = promptString("Name");
+		String streetAddress = promptString("Street Address");
+		String city = promptString("City");
+		String state = promptString("State");
+		String zip = promptString("Zip Code");
+		
+		return new Member(srcID, name, streetAddress, city, state, zip);
+	}
+	
 	
 	public void addMember() throws IOException {
-		System.out.println("Creating new member...");
+		System.out.println("Entering member creation wizard...");
 		Member addme = newMember();
 		db.addMember(addme);
 	}
 	
-	public void deleteMember() {
+	public void deleteMember() throws IOException {
 		System.out.println("Identify the member you wish to delete");
 		int ID = promptInt("ID");
-		
-		System.out.println("Deleting member...");
+		if(db.validateMemberID(ID)) { // if member exists
+			System.out.println("Found member by the ID \"" + ID + "\", deleting...");
+			db.deleteMember(ID);
+			System.out.println("Delete successful.");
+		} else { // if member does not exist
+			System.out.println("Member not found.");
+		}
 	}
 	
-	public void editMember() {
-		//find member to replace
-		System.out.println("Enter new member details...");
-		Member replacement = newMember();
-		//replace with replacement
+	public void editMember() throws IOException {
+		System.out.println("Identify the member you wish to edit");
+		int ID = promptInt("ID");
+		if(db.validateMemberID(ID)) { // if member exists
+			System.out.println("Found member by the ID \"" + ID);
+			System.out.println("Enter new member details...");
+			Member replacement = newMember(ID);
+			System.out.println("Deleting old member...");
+			db.deleteMember(ID);
+			System.out.println("Delete successful, adding new member...");
+			db.addMember(replacement);
+			System.out.println("Successfully replaced member.");
+		} else { // if member does not exist
+			System.out.println("Member not found.");
+		}
 		
+	}
+	
+	public void viewListMember() throws IOException {
+		System.out.println("Member List:");
+		db.displayMembers();
 	}
 	
 }

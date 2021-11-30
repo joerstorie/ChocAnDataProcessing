@@ -109,7 +109,7 @@ class DatabaseManager {
 		return members;
 	}
 	
-	public boolean validateMemberID(int ID) {
+	public boolean validateMemberID(int ID) { // returns true if member exists, based on ID
 		for(int i = 0; i < members.size(); i++) {
 			if(members.get(i).getID() == ID) {
 				return true;
@@ -118,7 +118,7 @@ class DatabaseManager {
 		return false;
 	}
 	
-	public boolean validateProviderID(int ID) {
+	public boolean validateProviderID(int ID) { // returns true if provider exists, based on ID
 		for(int i = 0; i < providers.size(); i++) {
 			if(providers.get(i).getID() == ID) {
 				return true;
@@ -144,26 +144,6 @@ class DatabaseManager {
 		}
 		return providers.get(0);
 	}
-	
-	
-	public boolean doesMemberExist(int ID) { // returns true if member exists, based on ID
-		for(int i = 0; i < members.size(); i++) {
-			if(members.get(i).getID() == ID) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean doesProviderExist(int ID) { // returns true if provider exists, based on ID
-		for(int i = 0; i < providers.size(); i++) {
-			if(providers.get(i).getID() == ID) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	
 	public void addMember(Member addMe) throws IOException { // adds 'addMe' to the local members list
 		members.add(addMe);
