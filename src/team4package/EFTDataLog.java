@@ -11,8 +11,8 @@ import java.util.List;
 class EFTDataLog {
 	DatabaseManager db;
 	
-	EFTDataLog(){
-		db = new DatabaseManager();
+	EFTDataLog() throws IOException{
+		db = DatabaseManager.getInstance();
 	}
 
 	public void saveLog() throws IOException {

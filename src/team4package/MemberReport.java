@@ -1,5 +1,6 @@
 package team4package;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,8 @@ class MemberReport {
 	private List<Service> serviceList;
 	
 	
-	MemberReport(Member src){
+	MemberReport(Member src) throws IOException{
+		db = DatabaseManager.getInstance();
 		member = src;
 	}
 	

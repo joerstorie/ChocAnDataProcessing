@@ -1,23 +1,21 @@
 package team4package;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 class Service {
-	private Date serviceDate;
+	private LocalDate serviceDate;
 	private int providerID;
 	private int memberID;
 	private String memberName;
-	private String serviceName;
-	private int fee;
+	private int serviceID;
 	
-	Service(int srcProvID, int srcMemID, String srcMemName, String srcName, int srcFee, Date srcDate){
+	Service(int srcID, int srcProvID, int srcMemID, String srcMemName, LocalDate srcDate){
 		serviceDate = srcDate;
 		providerID = srcProvID;
 		memberID = srcMemID;
 		memberName = srcMemName;
-		serviceName = srcName;
-		fee = srcFee;
+		serviceID = srcID;
 		
 	}
 	
@@ -33,11 +31,19 @@ class Service {
 		return memberName;
 	}
 	
+	public LocalDate getDate() {
+		return serviceDate;
+	}
+	
+	public int getServiceID() {
+		return serviceID;
+	}
+	
 	public String getName() {
-		return serviceName;
+		return DatabaseManager.getInstance().getServiceName(serviceID);
 	}
 	
 	public int getFee() {
-		return fee;
+		return DatabaseManager.getInstance().getServiceFee(serviceID);
 	}
 }

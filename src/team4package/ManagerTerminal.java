@@ -2,6 +2,7 @@ package team4package;
 
 import java.util.Scanner;
 import java.io.IOException;
+import java.io.File;
 
 class ManagerTerminal {
 	

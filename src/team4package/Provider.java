@@ -1,20 +1,29 @@
 package team4package;
 
+import java.io.IOException;
 import java.util.List;
 
 class Provider{
 	DatabaseManager db;
 	
 	private int ID;
+	private String streetAddress;
+	private String city;	
+	private String state;
+	private String zip;
 	private String name;
 	
-	Provider(int srcID, int srcFee, String srcName){
+	Provider(int srcID, String srcName, String srcStreetAddress, String srcCity, String srcState, String srcZip) throws IOException {
+		db = DatabaseManager.getInstance();
 		ID = srcID;
-		fee = srcFee;
+		streetAddress = srcStreetAddress;
+		city = srcCity;
+		state = srcState;
+		zip = srcZip;
 		name = srcName;
 	}
 	
-	public int getTotalFee() {
+	public int getTotalFee() throws IOException {
 		int total = 0;
 		
 		List<Service> services = db.getServices();
@@ -48,5 +57,21 @@ class Provider{
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public String getAddress() {
+		return streetAddress;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public String getZip() {
+		return zip;
 	}
 }

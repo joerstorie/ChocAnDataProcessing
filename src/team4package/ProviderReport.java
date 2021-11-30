@@ -13,7 +13,7 @@ class ProviderReport {
 		provider = src;
 	}
 	
-	public void saveReport() throws ExceptionIO {
+	public void saveReport() throws IOException {
 		FileWriter fw = new FileWriter("EFTDataLog.txt");
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Provider Report\n\n");
