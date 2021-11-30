@@ -12,9 +12,11 @@ public class ProviderTerminal {
 	}
 	
 	Scanner userInput;
+
 	
 	ProviderTerminal() {
 		userInput = new Scanner(System.in);
+		DatabaseManager db = new DatabaseManager();
 	}
 	
 	public void prompt() {
@@ -30,7 +32,7 @@ public class ProviderTerminal {
 				System.out.println("ID is only needed for Provider and Member.");
 				response = userInput.nextLine();
 			}
-			// Splitting input string into args
+			// Splitting input string into command line arguments
 			String[] args = response.split(" ");
 			
 			if(args.length < 1) {
@@ -39,16 +41,10 @@ public class ProviderTerminal {
 			else {
 				System.out.println("Enter member number: ");
 				int memberID = userInput.nextInt();
-				boolean memberIDmatch = DatabaseManager(memberID); 
-				if .equals(memberID, memberIDmatch) {
-					System.out.println("Invalid Number");
-					
-					/*if (feesOwed != 0) {
-						System.out.println("Validated");
-					}
-					else if (feesOwed > 0) {
-						System.out.println("Member Suspended");
-					}*/
+				int memberIDmatch = db.checkID(memberID);
+				
+				if (/*fill in*/) {
+					System.out.println("Validated");
 				}
 				else {
 					System.out.println("Invalid Number");
