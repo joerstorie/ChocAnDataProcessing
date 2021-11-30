@@ -97,7 +97,7 @@ class ManagerMember {
 		System.out.println("Identify the member you wish to edit");
 		int ID = promptInt("ID");
 		if(db.validateMemberID(ID)) { // if member exists
-			System.out.println("Found member by the ID \"" + ID);
+			System.out.println("Found member by the ID \"" + ID + "\"");
 			System.out.println("Enter new member details...");
 			Member replacement = newMember(ID);
 			System.out.println("Deleting old member...");

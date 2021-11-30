@@ -97,7 +97,7 @@ class ManagerProvider {
 		System.out.println("Identify the provider you wish to edit");
 		int ID = promptInt("ID");
 		if(db.validateProviderID(ID)) { // if member exists
-			System.out.println("Found provider by the ID \"" + ID);
+			System.out.println("Found provider by the ID \"" + ID + "\"");
 			System.out.println("Enter new provider details...");
 			Provider replacement = newProvider(ID);
 			System.out.println("Deleting old provider...");
