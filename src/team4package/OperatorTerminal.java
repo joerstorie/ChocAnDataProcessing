@@ -5,13 +5,6 @@ import java.util.Scanner;
 
 class OperatorTerminal {
 	
-	public static void main(String args[]) throws IOException {
-		OperatorTerminal ot = new OperatorTerminal();
-		while(true) {
-			ot.prompt();
-		}
-	}
-	
 	Scanner userInput;
 	
 	OperatorTerminal(){
@@ -29,10 +22,16 @@ class OperatorTerminal {
 				System.out.println("Please use the convention: [Function] [Person Type]");
 				System.out.println("Acceptable functions are: Add, Delete, Edit.");
 				System.out.println("Acceptable person types are: Member, Provider.");
+				System.out.println("Enter \"exit\" to exit.");
 				continue;
 			}
 			// Splitting input string into args
 			String[] args = response.split(" ");
+			
+			if(!args[0].isEmpty() && args[0].equals("exit")) {
+				invalid = false;
+				continue;
+			}
 			
 			if(args.length < 2)
 				System.out.println("Command is invalid.");
