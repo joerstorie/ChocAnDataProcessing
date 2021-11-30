@@ -145,6 +145,16 @@ class DatabaseManager {
 		return providers.get(0);
 	}
 	
+	public void addMember(Member addMe) throws IOException { // adds 'addMe' to the local members list
+		members.add(addMe);
+		//exportDatabase();  //unsure if this is needed
+	}
+	
+	public void addProvider(Provider addMe) throws IOException { // adds 'addMe' to the local providers list
+		providers.add(addMe);
+		//exportDatabase();  //unsure if this is needed
+	}
+	
 	public void displayMembers() {
 		for(int i = 0; i < members.size(); i++) {
 			System.out.println("Member Name: " + members.get(i).getName() + " Member ID: " + members.get(i).getID());

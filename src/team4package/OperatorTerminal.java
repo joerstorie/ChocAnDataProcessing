@@ -1,3 +1,4 @@
+//Created by Sean Hurley
 package team4package;
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ class OperatorTerminal {
 		userInput = new Scanner(System.in);
 	}
 	
-	public void prompt() {
+	public void prompt() throws IOException{
 		boolean invalid = true;
 		
 		while(invalid) { // Until input is valid, prompt:
@@ -44,7 +45,7 @@ class OperatorTerminal {
 		}
 	}
 	
-	private void selectOption(String func, String personType) {
+	private void selectOption(String func, String personType) throws IOException{
 		if(personType.equals("Provider")) {
 			ManagerProvider controller = new ManagerProvider();
 			switch(func) {

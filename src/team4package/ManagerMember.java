@@ -1,12 +1,28 @@
+//Created by Sean Hurley
 package team4package;
 
+import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
 
-public class ManagerMember {
+class ManagerMember {
 	Scanner userInput;
+	DatabaseManager db;
+	private List<Provider> providers;
+	private List<Member> members;
 	
-	ManagerMember(){
+	private void setMembers() {
+		members = db.getMembers();
+	}
+	private void setProviders() {
+		providers = db.getProviders();
+	}
+	
+	ManagerMember() throws IOException{
 		userInput = new Scanner(System.in);
+		db = DatabaseManager.getInstance();
+		setProviders();
+		setMembers();
 	}
 	
 	private String promptString(String item) {
@@ -48,7 +64,7 @@ public class ManagerMember {
 		return (Integer) null; //shouldn't get here
 	}
 	
-	private Member newMember() {
+	private Member newMember() { // builds a new member and returns it
 		int ID = promptInt("ID");
 		String name = promptString("Name");
 		String streetAddress = promptString("Street Address");
@@ -60,10 +76,10 @@ public class ManagerMember {
 	}
 	
 	
-	public void addMember() {
+	public void addMember() throws IOException {
 		System.out.println("Creating new member...");
 		Member addme = newMember();
-		//add to database
+		db.addMember(addme);
 	}
 	
 	public void deleteMember() {

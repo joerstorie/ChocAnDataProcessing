@@ -21,6 +21,12 @@ class MemberReport {
 	}
 	
 	private void gatherServices() {
+		List<Service> allServices = db.getServices();
+		for(int i = 0; i < allServices.size(); i++) {
+			if(allServices.get(i).getMemberID() == member.getID()) {
+				serviceList.add(allServices.get(i));
+			}
+		}
 		serviceList = db.getServicesByID(member.getID(), "Member");
 	}
 	
