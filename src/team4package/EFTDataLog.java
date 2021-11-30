@@ -1,5 +1,6 @@
 package team4package;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
@@ -21,7 +22,7 @@ class EFTDataLog {
 		List<Provider> providers = db.getProviders();
 		for (int i = 0; i < providers.size(); i++) {
 			int currFee = providers.get(i).getTotalFee();
-			pw.print(providers.get(i).getName() + "----" + currFee);
+			pw.print(providers.get(i).getName() + "----" + "$", currFee);
 			pw.print("\n");
 		}
 
