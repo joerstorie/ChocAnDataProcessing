@@ -1,10 +1,11 @@
 package team4package;
 
 import java.util.Scanner;
+import java.io.IOException;
 
 class ManagerTerminal {
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		ManagerTerminal mt = new ManagerTerminal();
 		while(true) {
 			mt.prompt();
@@ -17,14 +18,14 @@ class ManagerTerminal {
 		userInput = new Scanner(System.in);
 	}
 	
-	public void prompt() {
+	public void prompt() throws IOException {
 		boolean invalid = true;
 		
 		while(invalid) { // Until input is valid, prompt:
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
 			
-			if(response == "help") { // Allows user to be given reference information.
+			if(response.equals("help")) { // Allows user to be given reference information.
 				System.out.println("Please use the convention: [Report Type] [ID]");
 				System.out.println("Acceptable report types are: Provider, Member, Summary, EFT. Input * to log all.");
 				System.out.println("ID is only needed for report types Provider and Member.");
@@ -32,13 +33,12 @@ class ManagerTerminal {
 			}
 			 // Splitting input string into args
 			String[] args = response.split(" ");
-			System.out.println(args);
 			
 			if(args.length < 1) {
 				System.out.println("Command is invalid.");
 			} else {
 				String reportType = args[0];
-				if(reportType == "Provider" || reportType == "Member") {
+				if(reportType.equals("Provider") || reportType.equals("Member")) {
 					int parsedID;
 					if(args.length < 2) {
 						System.out.println("Please supply an ID.");
@@ -55,7 +55,7 @@ class ManagerTerminal {
 					}
 					selectOption(reportType, parsedID);
 					break;
-				} else if(reportType == "Summary" || reportType == "EFT" || reportType == "*") {
+				} else if(reportType.equals("Summary") || reportType.equals("EFT") || reportType.equals("*")) {
 					selectOption(reportType);
 					break;
 				} else {
@@ -65,7 +65,7 @@ class ManagerTerminal {
 		}
 	}
 	
-	private void selectOption(String reportType, int ID) {
+	private void selectOption(String reportType, int ID) throws IOException {
 		ReportController control = new ReportController();
 		
 		switch (reportType) {
@@ -81,7 +81,7 @@ class ManagerTerminal {
 		}
 	}
 	
-	private void selectOption(String reportType) {
+	private void selectOption(String reportType) throws IOException {
 		ReportController control = new ReportController();
 		
 		switch (reportType) {

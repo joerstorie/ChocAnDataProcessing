@@ -13,20 +13,19 @@ class DatabaseManager {
 		// Read information from csv(s)
 	}
 	
-	boolean CheckID(int memberID) {
-		int memberIDmatch;
-		
-		if (/* match found */) {
-			return true;
-		}
-		else (/* match not found*/) {
-			return false;
-		}
+
+	public List<Provider> getProviders(){
+		return providers;
 	}
 	
-	/*int CheckMemberFee(int memberID) {
-		int memberFee;
-		
-		return memberFee;
-	}*/
-}
+	public List<Service> getServices(){
+		return services;
+	}
+	
+	public List<Member> getMembers(){
+		return members;
+	}
+	
+	
+	
+	
