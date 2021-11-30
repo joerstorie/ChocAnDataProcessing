@@ -1,10 +1,11 @@
 package team4package;
 
 import java.util.Scanner;
+import java.io.IOException;
 
 class ManagerTerminal {
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		ManagerTerminal mt = new ManagerTerminal();
 		while(true) {
 			mt.prompt();
@@ -17,7 +18,7 @@ class ManagerTerminal {
 		userInput = new Scanner(System.in);
 	}
 	
-	public void prompt() {
+	public void prompt() throws IOException {
 		boolean invalid = true;
 		
 		while(invalid) { // Until input is valid, prompt:
@@ -64,7 +65,7 @@ class ManagerTerminal {
 		}
 	}
 	
-	private void selectOption(String reportType, int ID) {
+	private void selectOption(String reportType, int ID) throws IOException {
 		ReportController control = new ReportController();
 		
 		switch (reportType) {
@@ -80,7 +81,7 @@ class ManagerTerminal {
 		}
 	}
 	
-	private void selectOption(String reportType) {
+	private void selectOption(String reportType) throws IOException {
 		ReportController control = new ReportController();
 		
 		switch (reportType) {

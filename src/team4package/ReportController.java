@@ -1,14 +1,12 @@
 package team4package;
-import team4package.EFTDataLog;
-import team4package.MemberReport;
-import team4package.ProviderReport;
-import team4package.SummaryReport;
+
+import java.io.IOException;
 
 class ReportController{
 	
 	ReportController(){}
 	
-	public void createReports() {
+	public void createReports() throws IOException {
 		createEFTDataLog();
 		createSummaryReport();
 		
@@ -23,7 +21,7 @@ class ReportController{
 		}
 	}
 	
-	public void createEFTDataLog() {
+	public void createEFTDataLog() throws IOException {
 		EFTDataLog eft = new EFTDataLog();
 		eft.saveLog();
 	}

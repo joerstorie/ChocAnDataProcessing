@@ -5,11 +5,16 @@ import java.util.List;
 class Provider{
 	DatabaseManager db;
 	
-	Provider(){
+	private int ID;
+	private String name;
+	
+	Provider(int srcID, String srcName){
 		db = new DatabaseManager();
+		ID = srcID;
+		name = srcName;
 	}
 	
-	public int getTotalFee(int ID) {
+	public int getTotalFee() {
 		int total = 0;
 		
 		List<Service> services = db.getServices();
@@ -19,5 +24,9 @@ class Provider{
 			}
 		}
 		return total;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }
