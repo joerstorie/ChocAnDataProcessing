@@ -3,10 +3,10 @@ package team4package;
 import java.io.File;
 
 
+
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-
 
 class SummaryReport {
 	DatabaseManager db;
@@ -22,7 +22,7 @@ class SummaryReport {
 		
 		FileWriter fw = new FileWriter("EFTDataLog.txt");
 		PrintWriter pw = new PrintWriter(fw);
-		pw.print("EFT Data Log\n");
+		pw.print("EFT Data Log\n\n");
 		
 		List<Provider> providers = db.getProviders();
 		for (int i = 0; i < providers.size(); i++) {
