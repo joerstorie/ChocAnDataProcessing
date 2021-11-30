@@ -1,10 +1,10 @@
 package team4package;
 
 class ProviderReport {
-	int providerID;
+	private Provider provider;
 	
-	ProviderReport(int ID){
-		providerID = ID;
+	ProviderReport(Provider src){
+		provider = src;
 	}
 	
 }
