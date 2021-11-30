@@ -2,11 +2,12 @@ package team4package;
 
 class Member{
 	private int ID;
+	private String name;
 	private String streetAddress;
 	private String city;	
 	private String state;
 	private String zip;
-	private String name;
+	
 	
 	Member(int srcID, String srcName, String srcStreetAddress, String srcCity, String srcState, String srcZip){
 		ID = srcID;

@@ -7,11 +7,12 @@ class Provider{
 	DatabaseManager db;
 	
 	private int ID;
+	private String name;
 	private String streetAddress;
 	private String city;	
 	private String state;
 	private String zip;
-	private String name;
+	
 	
 	Provider(int srcID, String srcName, String srcStreetAddress, String srcCity, String srcState, String srcZip) throws IOException {
 		db = DatabaseManager.getInstance();
