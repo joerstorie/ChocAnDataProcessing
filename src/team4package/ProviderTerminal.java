@@ -15,9 +15,7 @@ public class ProviderTerminal {
 	}
 	
 	public void prompt() {
-		boolean invalid = true;
-		
-		while(invalid) {
+		while(true) {
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
 			
@@ -25,6 +23,10 @@ public class ProviderTerminal {
 				System.out.println("Enter \"Directory\" to receive a list of services offered.");
 				System.out.println("Enter \"Service\" to apply a service to a member.");
 				response = userInput.nextLine();
+			}
+			
+			if(response.equals("exit")) {
+				break;
 			}
 			// Splitting input string into command line arguments
 			String[] args = response.split(" ");
@@ -46,6 +48,7 @@ public class ProviderTerminal {
 				}
 			}
 		}
+		System.out.println("Exiting the terminal.");
 	}
 	
 	private void applyService(int memberID) {
