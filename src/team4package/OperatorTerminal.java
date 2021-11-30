@@ -20,7 +20,7 @@ class OperatorTerminal {
 			
 			if(response.equals("help")) { // Allows user to be given reference information.
 				System.out.println("Please use the convention: [Function] [Person Type]");
-				System.out.println("Acceptable functions are: Add, Delete, Edit.");
+				System.out.println("Acceptable functions are: Add, Delete, Edit, ViewList.");
 				System.out.println("Acceptable person types are: Member, Provider.");
 				System.out.println("Enter \"exit\" to exit.");
 				continue;
@@ -35,7 +35,7 @@ class OperatorTerminal {
 			
 			if(args.length < 2)
 				System.out.println("Command is invalid.");
-			else if(!args[0].equals("Add") && !args[0].equals("Delete") && !args[0].equals("Edit")) // args[0] is Function
+			else if(!args[0].equals("Add") && !args[0].equals("Delete") && !args[0].equals("Edit") && !args[0].equals("ViewList")) // args[0] is Function
 				System.out.println("Command is invalid.");
 			else if(!args[1].equals("Member") && !args[1].equals("Provider")) // args[1] is Person Type
 				System.out.println("Command is invalid.");
@@ -57,6 +57,9 @@ class OperatorTerminal {
 			case "Edit":
 				controller.editProvider();
 				break;
+			case "ViewList":
+				controller.viewListProvider();
+				break;
 			}
 		} else { //personType == "Member"
 			ManagerMember controller = new ManagerMember();
@@ -69,6 +72,9 @@ class OperatorTerminal {
 				break;
 			case "Edit":
 				controller.editMember();
+				break;
+			case "ViewList":
+				controller.viewListMember();
 				break;
 			}
 		}

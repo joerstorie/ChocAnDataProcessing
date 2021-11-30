@@ -38,4 +38,10 @@ class ManagerProvider {
 		
 	}
 	
+	public void viewListProvider() throws IOException {
+		System.out.println("Provider List:");
+		db.displayProviders();
+				
+	}
+	
 }
