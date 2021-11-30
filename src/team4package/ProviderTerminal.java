@@ -2,7 +2,10 @@
 package team4package;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class ProviderTerminal {
 	DatabaseManager db;
@@ -45,6 +48,7 @@ public class ProviderTerminal {
 				}
 				else {
 					System.out.println("Invalid Number. Please check your input and try again.");
+					userInput.nextLine();
 				}
 			}
 		}
@@ -52,6 +56,58 @@ public class ProviderTerminal {
 	}
 	
 	private void applyService(int memberID) {
+		System.out.println("Please input the date of service using the format \"yyyy-mm-dd\"");
+		boolean invalid = true;
+		LocalDate date;
+		while(invalid) {
+			String response = userInput.nextLine();
+			try {
+				date = LocalDate.parse(response);
+				invalid = false;
+			} catch (DateTimeParseException e) {
+				System.out.println("Please use the requested format- \"yyyy-mm-dd\"");
+			}
+		}
+		int servCode = 1;
+		String servName = "No Service Found";
+		boolean confirmed = false;
+		while(!confirmed) {
+			System.out.println("Please enter a service code.");
+			boolean invalidCode = true;
+			
+			while(invalidCode) {
+				boolean failing = true;
+				while(failing) {
+					try {
+						servCode = userInput.nextInt();
+						failing = false;
+					} catch (InputMismatchException ime) {
+						System.out.println("Please input a numeric code.");
+					}
+				}
+				servName = db.getServiceName(servCode);
+				if(servName != "No Service Found") {
+					invalidCode = false;
+				} else {
+					System.out.println("No service found. Input a new service code.");
+				}
+			}
+			
+			System.out.println(servName);
+			System.out.println("Input \"confirm\" to confirm your service selection, enter to input a new code, or \"exit\" to exit");
+			userInput.nextLine();
+			String response = userInput.nextLine();
+			if(response.equals("confirm")) {
+				confirmed = true;
+			} else if(response.equals("exit")) {
+				System.out.println("Process cancelled.");
+				userInput.nextLine();
+				return;
+			} else {
+				System.out.println("Input a new code.");
+			}
+		}
+		
 		
 	}
 }
