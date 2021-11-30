@@ -2,7 +2,7 @@ package team4package;
 
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+//import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -145,6 +145,26 @@ class DatabaseManager {
 		return providers.get(0);
 	}
 	
+	
+	public boolean doesMemberExist(int ID) { // returns true if member exists, based on ID
+		for(int i = 0; i < members.size(); i++) {
+			if(members.get(i).getID() == ID) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean doesProviderExist(int ID) { // returns true if provider exists, based on ID
+		for(int i = 0; i < providers.size(); i++) {
+			if(providers.get(i).getID() == ID) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	public void addMember(Member addMe) throws IOException { // adds 'addMe' to the local members list
 		members.add(addMe);
 		//exportDatabase();  //unsure if this is needed
@@ -152,6 +172,26 @@ class DatabaseManager {
 	
 	public void addProvider(Provider addMe) throws IOException { // adds 'addMe' to the local providers list
 		providers.add(addMe);
+		//exportDatabase();  //unsure if this is needed
+	}
+	
+	public void deleteMember(int ID) throws IOException { // deletes member based on ID from the local members list
+		for(int i = 0; i < members.size(); i++) {
+			if(members.get(i).getID() == ID) {
+				members.remove(i);
+				break;
+			}
+		}
+		//exportDatabase();  //unsure if this is needed
+	}
+	
+	public void deleteProvider(int ID) throws IOException { // deletes provider based on ID from the local providers list
+		for(int i = 0; i < providers.size(); i++) {
+			if(providers.get(i).getID() == ID) {
+				providers.remove(i);
+				break;
+			}
+		}
 		//exportDatabase();  //unsure if this is needed
 	}
 	
