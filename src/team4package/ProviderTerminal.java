@@ -1,10 +1,12 @@
 // Trent Boughner
 package team4package;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ProviderTerminal {
-	public static void main(String args[]) {
+	DatabaseManager db;
+	public static void main(String args[]) throws IOException {
 		ProviderTerminal pt = new ProviderTerminal();
 		while(true) {
 			pt.prompt();
@@ -13,9 +15,9 @@ public class ProviderTerminal {
 	
 	Scanner userInput;
 	
-	ProviderTerminal() {
+	ProviderTerminal() throws IOException {
 		userInput = new Scanner(System.in);
-		DatabaseManager db = new DatabaseManager();
+		db = DatabaseManager.getInstance();
 	}
 	
 	public void prompt() {
@@ -25,7 +27,7 @@ public class ProviderTerminal {
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
 			
-			if(response == "help") { // Allows user to be given reference information.
+			if(response.equals("help")) { // Allows user to be given reference information.
 				System.out.println("Please use the convention: [Report Type] [ID]");
 				System.out.println("Acceptable report types are: ");
 				System.out.println("ID is only needed for Provider and Member.");
@@ -40,9 +42,9 @@ public class ProviderTerminal {
 			else {
 				System.out.println("Enter member number: ");
 				int memberID = userInput.nextInt();
-				int memberIDmatch = db.checkID(memberID);
+				boolean verified = db.validateMemberID(memberID);
 				
-				if (/*fill in*/) {
+				if (verified) {
 					System.out.println("Validated");
 				}
 				else {

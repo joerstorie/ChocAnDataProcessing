@@ -1,23 +1,33 @@
 package team4package;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.ArrayList;
 
 class Provider{
 	DatabaseManager db;
 	
 	private int ID;
 	private String name;
+	private String streetAddress;
+	private String city;	
+	private String state;
+	private String zip;
 	
-	Provider(int srcID, int srcFee, String srcName){
+	
+	Provider(int srcID, String srcName, String srcStreetAddress, String srcCity, String srcState, String srcZip) throws IOException {
+		db = DatabaseManager.getInstance();
 		ID = srcID;
-		fee = srcFee;
+		streetAddress = srcStreetAddress;
+		city = srcCity;
+		state = srcState;
+		zip = srcZip;
 		name = srcName;
 	}
 	
-	public int getTotalFee() {
+	public int getTotalFee() throws IOException {
 		int total = 0;
 		
-		List<Service> services = db.getServices();
+		ArrayList<Service> services = db.getServices();
 		for(int i = 0; i < services.size(); i++) {
 			if(services.get(i).getProviderID() == ID) {
 				total += services.get(i).getFee();
@@ -29,7 +39,7 @@ class Provider{
 	public int getNumServices() {
 		int num = 0;
 		
-		List<Service> services = db.getServices();
+		ArrayList<Service> services = db.getServices();
 		for(int i = 0; i < services.size(); i++) {
 			if(services.get(i).getProviderID() == ID) {
 				num++;
@@ -38,11 +48,31 @@ class Provider{
 		return num;
 	}
 	
+	public ArrayList<Service> getServices(){
+		return db.getServicesByID(ID, "Provider");
+	}
+	
 	public String getName() {
 		return name;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public String getAddress() {
+		return streetAddress;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public String getZip() {
+		return zip;
 	}
 }

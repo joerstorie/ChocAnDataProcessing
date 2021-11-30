@@ -8,8 +8,8 @@ class ReportController{
 	private List<Provider> providers;
 	private List<Member> members;
 	
-	ReportController(){
-		db = new DatabaseManager();
+	ReportController() throws IOException{
+		db = DatabaseManager.getInstance();
 		setProviders();
 		setMembers();
 	}

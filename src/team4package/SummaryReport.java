@@ -3,16 +3,17 @@ package team4package;
 import java.io.File;
 
 
+
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
 
 class SummaryReport {
 	DatabaseManager db;
 	
-	SummaryReport() {
-		db = new SummaryReport();
+	SummaryReport() throws IOException {
+		db = DatabaseManager.getInstance();
 	}
 	public void saveReport() throws IOException {
 		int numProviders = 0;
@@ -20,18 +21,18 @@ class SummaryReport {
 		int totNumServices = 0;
 		int totalFee = 0;
 		
-		FileWriter fw = new FileWriter("EFTDataLog.txt");
+		FileWriter fw = new FileWriter("SummaryReport.txt");
 		PrintWriter pw = new PrintWriter(fw);
-		pw.print("EFT Data Log\n");
+		pw.print("Summary Report\n\n");
 		
-		List<Provider> providers = db.getProviders();
+		ArrayList<Provider> providers = db.getProviders();
 		for (int i = 0; i < providers.size(); i++) {
 			numProviders++;
 			numServices = providers.get(i).getNumServices();
-			totalNumServices = totNumServices + numServices;
+			totNumServices = totNumServices + numServices;
 			int currFee = providers.get(i).getTotalFee();
-			totaFee = totalFee + currFee;
-			pw.print(providers.get(i).getName() + "----" + numServices + "services" + "----" + "$", currFee);
+			totalFee = totalFee + currFee;
+			pw.print(providers.get(i).getName() + "----" + numServices + " services" + "----" + "$" + currFee);
 			pw.print("\n");
 			
 		}

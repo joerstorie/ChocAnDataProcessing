@@ -1,14 +1,22 @@
 package team4package;
 
-import java.util.Date;
+import java.io.IOException;
+import java.time.LocalDate;
 
 
 class Service {
-	private Date serviceDate;
+	private LocalDate serviceDate;
 	private int providerID;
 	private int memberID;
-	private String serviceName;
-	private int fee;
+	private int serviceID;
+	
+	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate){
+		serviceDate = srcDate;
+		providerID = srcProvID;
+		memberID = srcMemID;
+		serviceID = srcID;
+		
+	}
 	
 	public int getProviderID() {
 		return providerID;
@@ -18,11 +26,27 @@ class Service {
 		return memberID;
 	}
 	
-	public String getName() {
-		return serviceName;
+	public String getMemberName() throws IOException {
+		return DatabaseManager.getInstance().fetchMemberByID(memberID).getName();
 	}
 	
-	public int getFee() {
-		return fee;
+	public LocalDate getDate() {
+		return serviceDate;
+	}
+	
+	public int getServiceID() {
+		return serviceID;
+	}
+	
+	public String getProviderName() throws IOException {
+		return DatabaseManager.getInstance().fetchProviderByID(providerID).getName();
+	}
+	
+	public String getName() throws IOException {
+		return DatabaseManager.getInstance().getServiceName(serviceID);
+	}
+	
+	public int getFee() throws IOException {
+		return DatabaseManager.getInstance().getServiceFee(serviceID);
 	}
 }
