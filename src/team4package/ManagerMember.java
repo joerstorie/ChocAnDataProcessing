@@ -83,7 +83,9 @@ class ManagerMember {
 	}
 	
 	public void deleteMember() {
-		
+		System.out.println("Identify the member you wish to delete");
+		int ID = promptInt("ID");
+		System.out.println("Deleting member...");
 	}
 	
 	public void editMember() {
