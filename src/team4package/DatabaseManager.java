@@ -26,6 +26,28 @@ class DatabaseManager {
 		return members;
 	}
 	
+	public boolean validateMemberID(int ID) {
+		for(int i = 0; i < members.size(); i++) {
+			if(members.get(i).getID() == ID) {
+				return true;
+			}
+		}
+	}
+	
+	public boolean validateProviderID(int ID) {
+		
+	}
+	
+	public Member fetchMemByID(int ID) {
+		for(int i = 0; i < members.size(); i++) {
+			if(members.get(i).getID() == ID) {
+				return members.get(i);
+			}
+		}
+		System.out.println("No member found.");
+		
+	}
+	
 	
 	
 	

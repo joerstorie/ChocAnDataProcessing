@@ -38,9 +38,19 @@ class ReportController{
 		
 	}
 	
+	public void createMemberReport(int ID) throws IOException {
+		Member mem = db.fetchMemByID(ID);
+		createMemberReport(mem);
+	}
+	
 	public void createProviderReport(Provider src) throws IOException {
 		ProviderReport pr = new ProviderReport(src);
 		pr.saveReport();
+	}
+	
+	public void createProviderReport(int ID) {
+		Provider prov = db.fetchProvByID(ID);
+		createProviderReport(prov);
 	}
 	
 	public void createSummaryReport() throws IOException {
