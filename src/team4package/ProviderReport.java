@@ -28,8 +28,26 @@ class ProviderReport {
 		String state = provider.getState();
 		pw.print(state + "\n");
 		String zip = provider.getZip();
-		pw.print(zip + "\n");
+		pw.print(zip + "\n\n");
 		
+		List<Service> services = getListServices();
+		for (int i = 0; i < services.size(); i++) {
+			Date date = services.getDate();
+			pw.print(date + "\n");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date currDate = new Date();
+			pw.print(currDate + "\n");
+			Member currMember = services.getMember();
+			pw.print(currMember.getName() + "\n");
+			pw.print(currMember.getID() + "\n");
+			pw.print(services.getCode() + "\n");
+			pw.print(services.getFee() + "\n");
+			pw.print(providers.getNumServices() + "\n");
+			pw.print(providers.getTotalFee() + "\n");
+			
+			
+		}
+		pw.close();
 	
 		
 		
