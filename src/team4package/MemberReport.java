@@ -25,5 +25,28 @@ class MemberReport {
 		}
 		
 	}
-	
+	public void saveReport() throws ExceptionIO {
+		FileWriter fw = new FileWriter("EFTDataLog.txt");
+		PrintWriter pw = new PrintWriter(fw);
+		pw.print("Member Report\n\n");
+		String name = member.getName();
+		pw.print(name + "\n");
+		int ID = member.getID();
+		pw.print(ID + "\n");
+		String address = member.getAddress();
+		pw.print(address + "\n");
+		String city = member.getCity();
+		pw.print(city + "\n");
+		String state = member.getState();
+		pw.print(state + "\n");
+		String zip = member.getZip();
+		pw.print(zip + "\n\n");
+		
+		Date date = member.getDate();
+		pw.print(date + "\n");
+		Provider provider = member.getProviderName();
+		pw.print(provider.getName() + "\n");
+		pw.print(service.getName() + "\n");
+	}
+	pw.close();
 }
