@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -69,8 +71,46 @@ class DatabaseManager {
 		serviceTypesReader.close();
 	}
 	
+	private void exportMembersCSV() throws IOException {
+		FileWriter fw = new FileWriter("./data/membersTEST.csv");
+		PrintWriter pw = new PrintWriter(fw);
+		for(int i=0; i < members.size(); i++) {
+			pw.print(members.get(i).getID() + "," + members.get(i).getName() + "," + members.get(i).getAddress() + "," + members.get(i).getCity() + "," + members.get(i).getState() + "," + members.get(i).getZip() + "\n");
+		}
+		pw.close();
+	}
+	
+	private void exportProvidersCSV() throws IOException {
+		FileWriter fw = new FileWriter("./data/providersTEST.csv");
+		PrintWriter pw = new PrintWriter(fw);
+		for(int i=0; i < providers.size(); i++) {
+			pw.print(providers.get(i).getID() + "," + providers.get(i).getName() + "," + providers.get(i).getAddress() + "," + providers.get(i).getCity() + "," + providers.get(i).getState() + "," + providers.get(i).getZip() + "\n");
+		}
+		pw.close();
+	}
+	
+	private void exportServicesCSV() throws IOException {
+		FileWriter fw = new FileWriter("./data/servicesTEST.csv");
+		PrintWriter pw = new PrintWriter(fw);
+		for(int i=0; i < services.size(); i++) {
+			//still writing, needed to push
+			//pw.print(services.get(i).getDate() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).get() + "," + services.get(i).getState() + "," + services.get(i).getZip() + "\n");
+		} //int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime
+		pw.close();
+	}
+	
+	private void exportServiceTypesCSV() throws IOException {
+		FileWriter fw = new FileWriter("./data/providersTEST.csv");
+		PrintWriter pw = new PrintWriter(fw);
+		for(int i=0; i < providers.size(); i++) {
+			pw.print(providers.get(i).getID() + "," + providers.get(i).getName() + "," + providers.get(i).getAddress() + "," + providers.get(i).getCity() + "," + providers.get(i).getState() + "," + providers.get(i).getZip() + "\n");
+		}
+		pw.close();
+	}
+	
 	public void exportDatabase() throws IOException { // updates the csv files with the current lists
-		System.out.println("exportDatabase(): Not Implemented");
+		exportMembersCSV();
+		//System.out.println("exportDatabase(): Not Implemented");
 		// Implement this #############################
 	}
 	

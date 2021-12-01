@@ -43,6 +43,10 @@ class Service {
 		return serviceDate;
 	}
 	
+	public LocalDateTime getInputDate() {
+		return inputDTime;
+	}
+	
 	public int getServiceID() {
 		return serviceID;
 	}
