@@ -18,7 +18,9 @@ public class ProviderTerminal {
 		db = DatabaseManager.getInstance();
 	}
 	
-	public void prompt() {
+	public void prompt() throws IOException {
+		ProviderController controller = new ProviderController();
+		int serviceApplied;
 		while(true) {
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
@@ -38,16 +40,19 @@ public class ProviderTerminal {
 			if(args.length < 1) {
 				System.out.println("Please input a command.");
 			} else if(args[0].equals("Directory")) {	
+				
 			} else if(args[0].equals("Service")) {
 				System.out.println("Enter member ID:");
 				int memberID = userInput.nextInt();
 				boolean verified = db.validateMemberID(memberID);
 				if (verified) {
 					System.out.println("Member ID Validated");
-					//create service record
-					applyService(memberID);
-					// create verification form
-					
+					serviceApplied = applyService(memberID);
+					if(serviceApplied == 1) { // if service was not cancelled, continue with verification form
+						System.out.println("Verify the service.");
+						controller.createVerificationForm();
+						
+					}
 					
 				}
 				else {
@@ -59,14 +64,22 @@ public class ProviderTerminal {
 		System.out.println("Exiting the terminal.");
 	}
 	
-	private void applyService(int memberID) {
+	private String convertDate(String in) {
+		String[] args = in.split("-");
+		if(args.length < 2)
+			return in; //safety, retry entering
+		return args[2] + "-" + args[0] + "-" + args[1];
+	}
+	
+	private int applyService(int memberID) throws IOException { //return 1 if successful or 0 if cancelled
 		System.out.println("Please input the date of service using the format \"mm-dd-yyyy\"");
 		boolean invalid = true;
+		
 		LocalDate date = LocalDate.parse("1970-01-01");
 		while(invalid) {
 			String response = userInput.nextLine();
 			try {
-				date = LocalDate.parse(response);
+				date = LocalDate.parse(convertDate(response));
 				invalid = false;
 			} catch (DateTimeParseException e) {
 				System.out.println("Please use the requested format- \"mm-dd-yyyy\"");
@@ -90,7 +103,7 @@ public class ProviderTerminal {
 					}
 				}
 				servName = db.getServiceName(servCode);
-				if(servName != "No Service Found") {
+				if(!servName.equals("No Service Found")){
 					invalidCode = false;
 				} else {
 					System.out.println("No service found. Input a new service code.");
@@ -106,7 +119,7 @@ public class ProviderTerminal {
 			} else if(response.equals("exit")) {
 				System.out.println("Process cancelled.");
 				userInput.nextLine();
-				return;
+				return 0;
 			} else {
 				System.out.println("Input a new code.");
 			}
@@ -124,15 +137,18 @@ public class ProviderTerminal {
 			}
 		}
 		
+		ProviderController controller = new ProviderController();
 		LocalDateTime curDTime = LocalDateTime.now();
 		
 		Service newService = new Service(servCode, provID, memberID, date, curDTime);
+		
 		newService.logService();
 		// Adds to database (final change)
 		db.addService(newService);
 		
 		System.out.println("Service Fee: $" + newService.getFee() + "\n");
 		newService.getFee();
+		return 1;
 		
 
 	}

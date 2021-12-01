@@ -12,14 +12,15 @@ class Service {
 	private int serviceID;
 	private String comments = "";
 	private LocalDateTime inputDTime;
+	DatabaseManager db;
 	
-	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime){
+	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime) throws IOException {
 		serviceDate = srcDate;
 		providerID = srcProvID;
 		memberID = srcMemID;
 		serviceID = srcID;
 		inputDTime = srcDTime;
-		
+		db = DatabaseManager.getInstance();
 	}
 	
 	public void addComments(String srcComments) {
@@ -35,7 +36,7 @@ class Service {
 	}
 	
 	public String getMemberName() throws IOException {
-		return DatabaseManager.getInstance().fetchMemberByID(memberID).getName();
+		return db.fetchMemberByID(memberID).getName();
 	}
 	
 	public LocalDate getDate() {
@@ -47,14 +48,19 @@ class Service {
 	}
 	
 	public String getProviderName() throws IOException {
-		return DatabaseManager.getInstance().fetchProviderByID(providerID).getName();
+		return db.fetchProviderByID(providerID).getName();
 	}
 	
 	public String getName() throws IOException {
-		return DatabaseManager.getInstance().getServiceName(serviceID);
+		return db.getServiceName(serviceID);
 	}
 	
 	public int getFee() throws IOException {
-		return DatabaseManager.getInstance().getServiceFee(serviceID);
+		return db.getServiceFee(serviceID);
 	}
+	
+	public void logService() throws IOException {
+		db.addService(this);
+	}
+	
 }

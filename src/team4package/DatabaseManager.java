@@ -16,7 +16,6 @@ import java.time.LocalTime;
 class DatabaseManager {
 	
 	private ArrayList<Member> members = new ArrayList<>();
-	//private List<Member> fees;
 	private ArrayList<Provider> providers = new ArrayList<>();
 	private ArrayList<Service> services = new ArrayList<>();
 	private ArrayList<ServiceType> serviceTypes = new ArrayList<>();
@@ -219,8 +218,9 @@ class DatabaseManager {
 		return 0;
 	}
 	
-	public void addService(Service src) {
+	public void addService(Service src) throws IOException {
 		services.add(src);
+		exportDatabase();
 	}
 }
 	
