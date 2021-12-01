@@ -17,7 +17,7 @@ class ProviderReport {
 		db = DatabaseManager.getInstance();
 		provider = src;
 	}
-	//Creats and populates report
+	//Creates and populates report
 	public void saveReport() throws IOException {
 		String name = provider.getName();
 		FileWriter fw = new FileWriter(name.replace(" ", "") + ".txt");
