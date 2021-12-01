@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.io.PrintWriter;
 
 class MemberReport {
-	DatabaseManager db;
+	DatabaseManager db; // Accesses database
 	
 	private Member member;
 	private ArrayList<Service> serviceList;
