@@ -40,20 +40,15 @@ public class ProviderTerminal {
 			if(args.length < 1) {
 				System.out.println("Please input a command.");
 			} else if(args[0].equals("Directory")) {	
+				System.out.println("\nProvider Directory");
 				db.exportProviderDirectory();
-				System.out.println("Successfully Emailed Provider Directory.");
 			} else if(args[0].equals("Service")) {
 				System.out.println("Enter member ID:");
 				int memberID = userInput.nextInt();
 				boolean verified = db.validateMemberID(memberID);
 				if (verified) {
 					System.out.println("Member ID Validated");
-					serviceID = applyService(memberID);
-					if(serviceID != -1) { // if service was not cancelled, continue with verification form
-					
-						System.out.println("Successfully Verified.");
-					}
-						
+					applyService(memberID);
 				} else {
 					System.out.println("Invalid Number. Please check your input and try again.");
 					userInput.nextLine();
@@ -139,24 +134,24 @@ public class ProviderTerminal {
 
 		LocalDateTime curDTime = LocalDateTime.now();
 		
-		Service newService = new Service(servCode, provID, memberID, date, curDTime, db.getServices().size() + 1);
+		Service newService = new Service(db.getServices().size() + 1, servCode, provID, memberID, date, curDTime);
 		System.out.println("Add any comments or press enter to skip. Only the first 100 characters will be used.");
+		userInput.nextLine();
 		String response = userInput.nextLine();
 		if(response.length() > 100) {
 			response = response.substring(0, 99);
 		}
 		newService.addComments(response);
+		
+		
 		boolean verified = createVerificationForm(newService);
 		if(!verified) {
 			System.out.println("Process Cancelled.");
 			return;
 		}
+		
+		System.out.println("Service has been recorded.");
 		newService.logService();
-		db.addService(newService); // Adds service to database
-		
-		System.out.println("Service Fee: $" + newService.getFee() + "\n");
-		newService.getFee();
-		
 	}
 	
 	private boolean promptStringMatch(String item, String match) { // prompts user to match the string

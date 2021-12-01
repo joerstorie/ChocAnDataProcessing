@@ -15,11 +15,11 @@ class Service {
 	private LocalDateTime inputDTime;
 	DatabaseManager db;
 	
-	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime, int srcIDX) throws IOException {
+	Service(int srcIDX, int srcTypeID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime) throws IOException {
 		serviceDate = srcDate;
 		providerID = srcProvID;
 		memberID = srcMemID;
-		serviceID = srcID;
+		serviceID = srcTypeID;
 		inputDTime = srcDTime;
 		db = DatabaseManager.getInstance();
 		serviceIDX = srcIDX;
@@ -81,6 +81,9 @@ class Service {
 		System.out.println("Member Number: " + memberID);
 		System.out.println("Service Code: " + serviceID);
 		System.out.println("Fee: $" + getFee());
+		if(comments != "") {
+			System.out.println("Comments: " + comments);
+		}
 		
 	}
 	

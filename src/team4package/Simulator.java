@@ -17,6 +17,7 @@ class Simulator{
 		db = DatabaseManager.getInstance();
 		db.importDatabase();
 		sim.prompt();
+		db.exportDatabase();
 		return;
 	}
 	
@@ -24,7 +25,7 @@ class Simulator{
 		boolean ongoing = true;
 		while(ongoing) {
 			System.out.println("Choose a terminal. Options are: \"Provider\", \"Manager\", \"Operator\"");
-			System.out.println("Input \"exit\" to end the simulation.");
+			System.out.println("Input \"exit\" to end the simulation. All modifications will be saved.");
 			String response = userInput.nextLine();
 			String[] args = response.split(" ");
 			if(args.length < 1) {
