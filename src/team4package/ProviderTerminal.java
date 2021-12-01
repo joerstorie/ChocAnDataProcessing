@@ -60,7 +60,7 @@ public class ProviderTerminal {
 	}
 	
 	private void applyService(int memberID) {
-		System.out.println("Please input the date of service using the format \"yyyy-mm-dd\"");
+		System.out.println("Please input the date of service using the format \"mm-dd-yyyy\"");
 		boolean invalid = true;
 		LocalDate date = LocalDate.parse("1970-01-01");
 		while(invalid) {
@@ -69,7 +69,7 @@ public class ProviderTerminal {
 				date = LocalDate.parse(response);
 				invalid = false;
 			} catch (DateTimeParseException e) {
-				System.out.println("Please use the requested format- \"yyyy-mm-dd\"");
+				System.out.println("Please use the requested format- \"mm-dd-yyyy\"");
 			}
 		}
 		int servCode = 1;
