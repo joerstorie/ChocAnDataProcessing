@@ -73,6 +73,10 @@ class Service {
 		db.addService(this);
 	}
 	
+	public String getComments() {
+		return comments;
+	}
+	
 	public void print() throws IOException {
 		System.out.println("Service Details");
 		System.out.println("Service file Date and Time: " + inputDTime);

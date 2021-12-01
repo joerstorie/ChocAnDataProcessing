@@ -15,7 +15,7 @@ public class ProviderTerminal {
 	
 	ProviderTerminal() throws IOException { // Declares input scanner and connects to database instance
 		userInput = new Scanner(System.in);
-		db = DatabaseManager.getInstance();
+		db = Simulator.DBSetup();
 	}
 	
 	public void prompt() throws IOException {
@@ -58,7 +58,7 @@ public class ProviderTerminal {
 		System.out.println("Exiting the terminal."); // Ending terminal use
 	}
 	
-	private String convertDate(String in) { // Converts from format requested in requirements to java's parsing format
+	public String convertDate(String in) { // Converts from format requested in requirements to java's parsing format
 		String[] args = in.split("-");
 		if(args.length < 2)
 			return in; //safety, retry entering
@@ -157,10 +157,11 @@ public class ProviderTerminal {
 		newService.logService();
 	}
 	
+	
 	private boolean promptStringMatch(String item, String match) { // prompts user to match the string
 		boolean invalid = true;
 		String response = " ";
-		while(invalid) {
+		while(invalid) { 
 			System.out.println("Enter " + item + ", or \"exit\" to cancel: ");
 			response = userInput.nextLine();
 			if(!response.equals(match)) {

@@ -1,4 +1,6 @@
 // Joseph Storie
+package team4package;
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -25,3 +27,4 @@ public class ServiceTypeTest {
 	}
 
 }
+
