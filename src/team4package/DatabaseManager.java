@@ -69,8 +69,14 @@ class DatabaseManager {
 		serviceTypesReader.close();
 	}
 	
-	public void exportDatabase() throws IOException {
-		// Implement this
+	public void exportDatabase() throws IOException { // updates the csv files with the current lists
+		System.out.println("exportDatabase(): Not Implemented");
+		// Implement this #############################
+	}
+	
+	public void exportProviderDirectory() throws IOException { // exports Provider Directory to txt file (instead of email)
+		System.out.println("exportProviderDirectory(): Not Implemented");
+		// Implement this #############################
 	}
 	
 
@@ -148,12 +154,12 @@ class DatabaseManager {
 	
 	public void addMember(Member addMe) throws IOException { // adds 'addMe' to the local members list
 		members.add(addMe);
-		//exportDatabase();  //unsure if this is needed
+		exportDatabase();
 	}
 	
 	public void addProvider(Provider addMe) throws IOException { // adds 'addMe' to the local providers list
 		providers.add(addMe);
-		//exportDatabase();  //unsure if this is needed
+		exportDatabase();
 	}
 	
 	public void deleteMember(int ID) throws IOException { // deletes member based on ID from the local members list
@@ -163,7 +169,7 @@ class DatabaseManager {
 				break;
 			}
 		}
-		//exportDatabase();  //unsure if this is needed
+		exportDatabase();
 	}
 	
 	public void deleteProvider(int ID) throws IOException { // deletes provider based on ID from the local providers list
@@ -173,7 +179,7 @@ class DatabaseManager {
 				break;
 			}
 		}
-		//exportDatabase();  //unsure if this is needed
+		exportDatabase();
 	}
 	
 	public void displayMembers() {
@@ -207,6 +213,15 @@ class DatabaseManager {
 			}
 		}
 		return "No Service Found";
+	}
+	
+	public Service getService(int ID) {
+		for(int i = 0; i < services.size(); i++) {
+			if(services.get(i).getServiceID() == ID) {
+				return services.get(i);
+			}
+		}
+		return (Service) null;
 	}
 	
 	public int getServiceFee(int ID) {

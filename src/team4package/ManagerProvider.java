@@ -79,6 +79,7 @@ class ManagerProvider {
 		System.out.println("Entering provider creation wizard...");
 		Provider addme = newProvider();
 		db.addProvider(addme);
+		System.out.println("Added new provider.");
 	}
 	
 	public void deleteProvider() throws IOException {

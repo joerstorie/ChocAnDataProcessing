@@ -63,4 +63,15 @@ class Service {
 		db.addService(this);
 	}
 	
+	public void print() throws IOException {
+		System.out.println("Service Details");
+		System.out.println("Service file Date and Time: " + inputDTime);
+		System.out.println("Date the Service was Provided: " + serviceDate);
+		System.out.println("Member Name: " + getMemberName());
+		System.out.println("Member Number: " + memberID);
+		System.out.println("Service Code: " + serviceID);
+		System.out.println("Fee: $" + getFee());
+		
+	}
+	
 }

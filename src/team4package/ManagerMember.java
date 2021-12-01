@@ -79,6 +79,7 @@ class ManagerMember {
 		System.out.println("Entering member creation wizard...");
 		Member addme = newMember();
 		db.addMember(addme);
+		System.out.println("Added new member.");
 	}
 	
 	public void deleteMember() throws IOException {
