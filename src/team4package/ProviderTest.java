@@ -22,12 +22,12 @@ public class ProviderTest {
 	//Checking Provider's Name
 	@Test
 	public void ProviderNameTest() {
-		assertEquals("Alabama", newProv.getName());
+		assertEquals("Jake", newProv.getName());
 	}
 	//Checking Provider's ID
 	@Test
 	public void ProviderIDTest() {
-		assertEquals("Alabama", newProv.getID());
+		assertEquals(12, newProv.getID());
 	}
 	
 	@After
