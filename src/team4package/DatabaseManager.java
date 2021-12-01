@@ -115,8 +115,6 @@ class DatabaseManager {
 		exportMembersCSV();
 		exportProvidersCSV();
 		exportServicesCSV();
-		//System.out.println("exportDatabase(): Not Implemented");
-		// Implement this #############################
 	}
 	
 	public void exportProviderDirectory() throws IOException { // exports Provider Directory to txt file (instead of email)
