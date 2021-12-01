@@ -17,11 +17,16 @@ class Simulator{
 	// Creates instance of simulator and and prompt
 	public static void main(String args[]) throws IOException {
 		Simulator sim = new Simulator();
-		db = DatabaseManager.getInstance();
-		db.importDatabase();
+		db = DBSetup();
 		sim.prompt();
 		db.exportDatabase();
 		return;
+	}
+	
+	public static DatabaseManager DBSetup() throws IOException {
+		DatabaseManager tempDB = DatabaseManager.getInstance();
+		tempDB.importDatabase();
+		return tempDB;
 	}
 	
 	// Prompts user to choose provider, manager, or operator terminal

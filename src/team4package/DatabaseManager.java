@@ -75,7 +75,7 @@ class DatabaseManager {
 	}
 	
 	private void exportMembersCSV() throws IOException {
-		FileWriter fw = new FileWriter("./data/membersTEST.csv");
+		FileWriter fw = new FileWriter("./data/members(Exported).csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < members.size(); i++) {
 			pw.print(members.get(i).getID() + "," + members.get(i).getName() + "," + members.get(i).getAddress() + "," + members.get(i).getCity() + "," + members.get(i).getState() + "," + members.get(i).getZip() + "\n");
@@ -84,7 +84,7 @@ class DatabaseManager {
 	}
 	
 	private void exportProvidersCSV() throws IOException {
-		FileWriter fw = new FileWriter("./data/providersTEST.csv");
+		FileWriter fw = new FileWriter("./data/providers(Exported).csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < providers.size(); i++) {
 			pw.print(providers.get(i).getID() + "," + providers.get(i).getName() + "," + providers.get(i).getAddress() + "," + providers.get(i).getCity() + "," + providers.get(i).getState() + "," + providers.get(i).getZip() + "\n");
@@ -93,7 +93,7 @@ class DatabaseManager {
 	}
 	
 	private void exportServicesCSV() throws IOException {
-		FileWriter fw = new FileWriter("./data/servicesTEST.csv");
+		FileWriter fw = new FileWriter("./data/services(Exported).csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < services.size(); i++) {
 			pw.print(services.get(i).getServiceIDX() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).getDate() + "," + services.get(i).getInputDate() + "\n");
