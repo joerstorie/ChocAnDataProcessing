@@ -6,6 +6,7 @@ import java.util.ArrayList;
 class Provider{
 	DatabaseManager db;
 	
+	// Creating private variable for provider ID, name, and address
 	private int ID;
 	private String name;
 	private String streetAddress;
@@ -13,7 +14,7 @@ class Provider{
 	private String state;
 	private String zip;
 	
-	
+	// creates an object called provider that has name, ID, and address as attributes
 	Provider(int srcID, String srcName, String srcStreetAddress, String srcCity, String srcState, String srcZip) throws IOException {
 		db = DatabaseManager.getInstance();
 		ID = srcID;
@@ -24,6 +25,7 @@ class Provider{
 		name = srcName;
 	}
 	
+	// retrieves the total fee of the services the provider has performed
 	public int getTotalFee() throws IOException {
 		int total = 0;
 		
@@ -36,6 +38,7 @@ class Provider{
 		return total;
 	}
 	
+	// retrieves the total number of services performed
 	public int getNumServices() {
 		int num = 0;
 		
@@ -48,30 +51,37 @@ class Provider{
 		return num;
 	}
 	
+	// retrieves a list of all the services the provider has performed
 	public ArrayList<Service> getServices(){
 		return db.getServicesByID(ID, "Provider");
 	}
 	
+	// retrieves name of provider
 	public String getName() {
 		return name;
 	}
 	
+	// retrieves provider ID
 	public int getID() {
 		return ID;
 	}
 	
+	// retrieves provider's street address
 	public String getAddress() {
 		return streetAddress;
 	}
 	
+	// retrieves provider's city of residence
 	public String getCity() {
 		return city;
 	}
 	
+	// retrieves provider's state of residence
 	public String getState() {
 		return state;
 	}
 	
+	// retrieves provider's zip code
 	public String getZip() {
 		return zip;
 	}
