@@ -139,6 +139,13 @@ public class ProviderTerminal {
 		LocalDateTime curDTime = LocalDateTime.now();
 		
 		Service newService = new Service(servCode, provID, memberID, date, curDTime);
+		System.out.println("Add any comments or press enter to skip. Only the first 100 characters will be used.");
+		String response = userInput.nextLine();
+		if(response.length() > 100) {
+			response = response.substring(0, 99);
+		}
+		newService.addComments(response);
+		
 		
 		newService.logService();
 		db.addService(newService); // Adds service to database
