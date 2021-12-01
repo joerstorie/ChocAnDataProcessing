@@ -1,3 +1,4 @@
+// Joseph Storie
 package team4package;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 import java.io.PrintWriter;
 
 class MemberReport {
-	DatabaseManager db;
+	DatabaseManager db; // Accesses database
 	
 	private Member member;
 	private ArrayList<Service> serviceList;
@@ -20,13 +21,13 @@ class MemberReport {
 		gatherServices();
 	}
 	
-	private void gatherServices() {
+	private void gatherServices() { // Gather services of member into serviceList
 		serviceList = db.getServicesByID(member.getID(), "Member");
 	}
 	
-	public void saveReport() throws IOException {
+	public void saveReport() throws IOException { // Prints the member report to member.txt
 		String name = member.getName();
-		FileWriter fw = new FileWriter(name.replace(" ", "") + ".txt");
+		FileWriter fw = new FileWriter(name.replace(" ", "") + ".txt"); // Changes file name to member.txt
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Member Report\n\n");
 		pw.print(name + "\n");
@@ -41,7 +42,7 @@ class MemberReport {
 		String zip = member.getZip();
 		pw.print(zip + "\n\n");
 		
-		for(int i = 0; i < serviceList.size(); i++) {
+		for(int i = 0; i < serviceList.size(); i++) { // Iterates through serviceList and prints each service to member.txt file
 			Service curService = serviceList.get(i);
 			LocalDate date = curService.getDate();
 			pw.print(date + "\n");

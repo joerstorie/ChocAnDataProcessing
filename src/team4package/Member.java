@@ -1,3 +1,4 @@
+// Joseph Storie
 package team4package;
 
 class Member{
@@ -8,7 +9,7 @@ class Member{
 	private String state;
 	private String zip;
 	
-	
+	// Assigns variables to corresponding arguments
 	Member(int srcID, String srcName, String srcStreetAddress, String srcCity, String srcState, String srcZip){
 		ID = srcID;
 		streetAddress = srcStreetAddress;
@@ -18,6 +19,7 @@ class Member{
 		name = srcName;
 	}
 	
+	// Methods to get and return information
 	public String getZip() {
 		return zip;
 	}
