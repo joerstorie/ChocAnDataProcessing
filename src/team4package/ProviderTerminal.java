@@ -15,7 +15,7 @@ public class ProviderTerminal {
 	
 	ProviderTerminal() throws IOException { // Declares input scanner and connects to database instance
 		userInput = new Scanner(System.in);
-		db = Simulator.DBSetup();
+		db = DatabaseManager.getInstance();
 	}
 	
 	public void prompt() throws IOException {
