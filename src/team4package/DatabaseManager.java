@@ -248,7 +248,7 @@ class DatabaseManager {
 
 	public String getServiceName(int ID) {
 		for(int i = 0; i < serviceTypes.size(); i++) {
-			if(serviceTypes.get(i).getID() == ID) {
+			if(serviceTypes.get(i).getServiceIDX() == ID) {
 				return serviceTypes.get(i).getName();
 			}
 		}
@@ -257,7 +257,7 @@ class DatabaseManager {
 	
 	public Service getService(int ID) {
 		for(int i = 0; i < services.size(); i++) {
-			if(services.get(i).getServiceID() == ID) {
+			if(services.get(i).getServiceIDX() == ID) {
 				return services.get(i);
 			}
 		}
@@ -266,7 +266,7 @@ class DatabaseManager {
 	
 	public int getServiceFee(int ID) {
 		for(int i = 0; i < serviceTypes.size(); i++) {
-			if(serviceTypes.get(i).getID() == ID) {
+			if(serviceTypes.get(i).getServiceIDX() == ID) {
 				return serviceTypes.get(i).getFee();
 			}
 		}

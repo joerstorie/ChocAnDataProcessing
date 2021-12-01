@@ -22,7 +22,7 @@ class Service {
 		serviceID = srcID;
 		inputDTime = srcDTime;
 		db = DatabaseManager.getInstance();
-		serviceIDX;
+		serviceIDX = srcIDX;
 	}
 	
 	public void addComments(String srcComments) {
@@ -51,6 +51,10 @@ class Service {
 	
 	public int getServiceID() {
 		return serviceID;
+	}
+	
+	public int getServiceIDX() {
+		return serviceIDX;
 	}
 	
 	public String getProviderName() throws IOException {
