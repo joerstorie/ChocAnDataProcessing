@@ -10,17 +10,19 @@ class Service {
 	private int providerID;
 	private int memberID;
 	private int serviceID;
+	private int serviceIDX;
 	private String comments = "";
 	private LocalDateTime inputDTime;
 	DatabaseManager db;
 	
-	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime) throws IOException {
+	Service(int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime, int srcIDX) throws IOException {
 		serviceDate = srcDate;
 		providerID = srcProvID;
 		memberID = srcMemID;
 		serviceID = srcID;
 		inputDTime = srcDTime;
 		db = DatabaseManager.getInstance();
+		serviceIDX;
 	}
 	
 	public void addComments(String srcComments) {

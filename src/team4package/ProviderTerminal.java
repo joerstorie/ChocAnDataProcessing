@@ -50,7 +50,7 @@ public class ProviderTerminal {
 					System.out.println("Member ID Validated");
 					serviceID = applyService(memberID);
 					if(serviceID != -1) { // if service was not cancelled, continue with verification form
-						createVerificationForm(db.getService(serviceID));
+					
 						System.out.println("Successfully Verified.");
 					}
 						
@@ -70,8 +70,9 @@ public class ProviderTerminal {
 		return args[2] + "-" + args[0] + "-" + args[1];
 	}
 	
-	private int applyService(int memberID) throws IOException { //returns ID if successful or -1 if cancelled
+	private void applyService(int memberID) throws IOException { //returns ID if successful or -1 if cancelled
 		System.out.println("Please input the date of service using the format \"mm-dd-yyyy\"");
+		userInput.nextLine();
 		boolean invalid = true;
 		
 		LocalDate date = LocalDate.parse("1970-01-01");
@@ -118,7 +119,7 @@ public class ProviderTerminal {
 			} else if(response.equals("exit")) {
 				System.out.println("Process cancelled.");
 				userInput.nextLine();
-				return -1;
+				return;
 			} else {
 				System.out.println("Input a new code.");
 			}
@@ -138,25 +139,27 @@ public class ProviderTerminal {
 
 		LocalDateTime curDTime = LocalDateTime.now();
 		
-		Service newService = new Service(servCode, provID, memberID, date, curDTime);
+		Service newService = new Service(servCode, provID, memberID, date, curDTime, db.getServices().size() + 1);
 		System.out.println("Add any comments or press enter to skip. Only the first 100 characters will be used.");
 		String response = userInput.nextLine();
 		if(response.length() > 100) {
 			response = response.substring(0, 99);
 		}
 		newService.addComments(response);
-		
-		
+		boolean verified = createVerificationForm(newService);
+		if(!verified) {
+			System.out.println("Process Cancelled.");
+			return;
+		}
 		newService.logService();
 		db.addService(newService); // Adds service to database
 		
 		System.out.println("Service Fee: $" + newService.getFee() + "\n");
 		newService.getFee();
-		return newService.getServiceID();
 		
 	}
 	
-	private void promptStringMatch(String item, String match) { // prompts user to match the string
+	private boolean promptStringMatch(String item, String match) { // prompts user to match the string
 		boolean invalid = true;
 		String response = " ";
 		while(invalid) {
@@ -165,24 +168,37 @@ public class ProviderTerminal {
 			if(!response.equals(match)) {
 				System.out.println("Please enter the matching " + item + ".");
 				continue;
-			}else {
+			}else if(response.equals("exit")) {
+				return false;
+			} else {
 				break;
 			}
 		}
-		return; // safety
+		return true; // safety
 	}
 	
-	private void createVerificationForm(Service compare) throws IOException {
+	private boolean createVerificationForm(Service compare) throws IOException {
 			
 		compare.print();
 		System.out.println("\nVerify the service by matching the details.");
 		System.out.println("Current Date and Time: " + LocalDateTime.now().toString() + ".");
 
-		promptStringMatch("Date the Service was Provided", compare.getDate().toString());
-		promptStringMatch("Member Name", compare.getMemberName());
-		promptStringMatch("Member Number", String.valueOf(compare.getMemberID()));
-		promptStringMatch("Service Code", String.valueOf(compare.getServiceID()));
-		promptStringMatch("Fee to be Paid", "$" + String.valueOf(compare.getFee()));
+		if(!promptStringMatch("Date the Service was Provided", compare.getDate().toString())) {
+			return false;
+		}
+		if(!promptStringMatch("Member Name", compare.getMemberName())) {
+			return false;
+		}
+		if(!promptStringMatch("Member Number", String.valueOf(compare.getMemberID()))) {
+			return false;
+		}
+		if(!promptStringMatch("Service Code", String.valueOf(compare.getServiceID()))) {
+			return false;
+		}
+		if(!promptStringMatch("Fee to be Paid", "$" + String.valueOf(compare.getFee()))) {
+			return false;
+		}
+		return true;
 
 	}
 }
