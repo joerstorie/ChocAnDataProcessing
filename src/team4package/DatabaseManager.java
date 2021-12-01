@@ -96,8 +96,7 @@ class DatabaseManager {
 		FileWriter fw = new FileWriter("./data/servicesTEST.csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < services.size(); i++) {
-			//still writing, needed to push
-			//pw.print(services.get(i).getDate() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).get() + "," + services.get(i).getState() + "," + services.get(i).getZip() + "\n");
+			pw.print(services.get(i).getServiceIDX() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).getDate() + "," + services.get(i).getInputDate() + "\n");
 		} //int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime
 		pw.close();
 	}
