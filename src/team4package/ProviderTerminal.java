@@ -37,15 +37,18 @@ public class ProviderTerminal {
 			
 			if(args.length < 1) {
 				System.out.println("Please input a command.");
-			} else if(args[0].equals("Directory")) {
-				
+			} else if(args[0].equals("Directory")) {	
 			} else if(args[0].equals("Service")) {
 				System.out.println("Enter member ID:");
 				int memberID = userInput.nextInt();
 				boolean verified = db.validateMemberID(memberID);
 				if (verified) {
 					System.out.println("Member ID Validated");
+					//create service record
 					applyService(memberID);
+					// create verification form
+					
+					
 				}
 				else {
 					System.out.println("Invalid Number. Please check your input and try again.");
@@ -128,5 +131,9 @@ public class ProviderTerminal {
 		// Adds to database (final change)
 		db.addService(newService);
 		
+		System.out.println("Service Fee: $" + newService.getFee() + "\n");
+		newService.getFee();
+		
+
 	}
 }
