@@ -12,10 +12,11 @@ import java.util.ArrayList;
 
 class SummaryReport {
 	DatabaseManager db;
-	
+	//Accesses database
 	SummaryReport() throws IOException {
 		db = DatabaseManager.getInstance();
 	}
+	//Creates and populates report
 	public void saveReport() throws IOException {
 		int numProviders = 0;
 		int numServices = 0;
@@ -26,6 +27,7 @@ class SummaryReport {
 		PrintWriter pw = new PrintWriter(fw);
 		pw.print("Summary Report\n\n");
 		
+		//Reads through providers to get information including the fee
 		ArrayList<Provider> providers = db.getProviders();
 		for (int i = 0; i < providers.size(); i++) {
 			numProviders++;
@@ -37,6 +39,7 @@ class SummaryReport {
 			pw.print("\n");
 			
 		}
+		//Prints number of providers/services and total fee
 		pw.print("\n");
 		pw.print("Total Number of Providers: " + numProviders + "\n");
 		pw.print("Total Number of Services: " + totNumServices + "\n");
