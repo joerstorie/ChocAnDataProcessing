@@ -44,7 +44,7 @@ class OperatorTerminal {
 		}
 	}
 	
-	private void selectOption(String func, String personType) throws IOException{
+	void selectOption(String func, String personType) throws IOException{
 		if(personType.equals("Provider")) {
 			ManagerProvider controller = new ManagerProvider();
 			switch(func) {

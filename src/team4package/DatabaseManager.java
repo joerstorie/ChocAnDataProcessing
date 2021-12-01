@@ -53,10 +53,12 @@ class DatabaseManager {
 			providers.add(newProvider);
 		}
 		
+		int i = 1;
 		while((row = servicesReader.readLine()) != null) {
 			String[] data = row.split(",");
-			Service newService = new Service(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), LocalDate.parse(data[3]), LocalDateTime.parse(data[4]));
+			Service newService = new Service(i, Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), LocalDate.parse(data[3]), LocalDateTime.parse(data[4]));
 			services.add(newService);
+			i++;
 		}
 		
 		while((row = serviceTypesReader.readLine()) != null) {
@@ -64,6 +66,7 @@ class DatabaseManager {
 			ServiceType newType = new ServiceType(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]));
 			serviceTypes.add(newType);
 		}
+		sortServiceTypes();
 		
 		membersReader.close();
 		providersReader.close();
@@ -93,8 +96,7 @@ class DatabaseManager {
 		FileWriter fw = new FileWriter("./data/servicesTEST.csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < services.size(); i++) {
-			//still writing, needed to push
-			//pw.print(services.get(i).getDate() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).get() + "," + services.get(i).getState() + "," + services.get(i).getZip() + "\n");
+			pw.print(services.get(i).getServiceIDX() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).getDate() + "," + services.get(i).getInputDate() + "\n");
 		} //int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime
 		pw.close();
 	}
@@ -110,13 +112,12 @@ class DatabaseManager {
 	
 	public void exportDatabase() throws IOException { // updates the csv files with the current lists
 		exportMembersCSV();
-		//System.out.println("exportDatabase(): Not Implemented");
-		// Implement this #############################
+		exportProvidersCSV();
+		exportServicesCSV();
 	}
 	
 	public void exportProviderDirectory() throws IOException { // exports Provider Directory to txt file (instead of email)
-		System.out.println("exportProviderDirectory(): Not Implemented");
-		// Implement this #############################
+		displayServiceTypes();
 	}
 	
 
@@ -242,13 +243,13 @@ class DatabaseManager {
 	
 	public void displayServiceTypes() throws IOException {
 		for(int i = 0; i < serviceTypes.size(); i++) {
-			System.out.println("Service Name: " + serviceTypes.get(i).getName() + " Fee: " + serviceTypes.get(i).getFee());
+			System.out.println("Service Name: " + serviceTypes.get(i).getName() + " -- Service Code: " + serviceTypes.get(i).getID() + " -- Fee: $" + serviceTypes.get(i).getFee());
 		}
 	}
 
 	public String getServiceName(int ID) {
 		for(int i = 0; i < serviceTypes.size(); i++) {
-			if(serviceTypes.get(i).getServiceIDX() == ID) {
+			if(serviceTypes.get(i).getID() == ID) {
 				return serviceTypes.get(i).getName();
 			}
 		}
@@ -266,7 +267,7 @@ class DatabaseManager {
 	
 	public int getServiceFee(int ID) {
 		for(int i = 0; i < serviceTypes.size(); i++) {
-			if(serviceTypes.get(i).getServiceIDX() == ID) {
+			if(serviceTypes.get(i).getID() == ID) {
 				return serviceTypes.get(i).getFee();
 			}
 		}
@@ -276,6 +277,12 @@ class DatabaseManager {
 	public void addService(Service src) throws IOException {
 		services.add(src);
 		exportDatabase();
+	}
+	
+	private void sortServiceTypes() {
+		serviceTypes.sort((o1, o2)
+	                      -> o1.getName().compareTo(
+	                          o2.getName()));
 	}
 }
 	

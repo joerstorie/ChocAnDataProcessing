@@ -1,4 +1,4 @@
-// Trent Boughner
+// Riley Parker
 package team4package;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class ProviderTerminal {
 	
 	Scanner userInput;
 	
-	ProviderTerminal() throws IOException {
+	ProviderTerminal() throws IOException { // Declares input scanner and connects to database instance
 		userInput = new Scanner(System.in);
 		db = DatabaseManager.getInstance();
 	}
@@ -21,7 +21,7 @@ public class ProviderTerminal {
 	public void prompt() throws IOException {
 		
 		int serviceID;
-		while(true) {
+		while(true) { // While user has not input "exit"
 			System.out.println("Enter Command. Type \"help\" for reference.");
 			String response = userInput.nextLine();
 			
@@ -31,7 +31,7 @@ public class ProviderTerminal {
 				response = userInput.nextLine();
 			}
 			
-			if(response.equals("exit")) {
+			if(response.equals("exit")) { // Allows user to exit terminal
 				break;
 			}
 			// Splitting input string into command line arguments
@@ -39,31 +39,26 @@ public class ProviderTerminal {
 			
 			if(args.length < 1) {
 				System.out.println("Please input a command.");
-			} else if(args[0].equals("Directory")) {	
+			} else if(args[0].equals("Directory")) {	// Displays list of service types in alphabetical order
+				System.out.println("\nProvider Directory");
 				db.exportProviderDirectory();
-				System.out.println("Successfully Emailed Provider Directory.");
-			} else if(args[0].equals("Service")) {
+			} else if(args[0].equals("Service")) { // Begins service logging process
 				System.out.println("Enter member ID:");
 				int memberID = userInput.nextInt();
-				boolean verified = db.validateMemberID(memberID);
+				boolean verified = db.validateMemberID(memberID); // Checks if memberID refers to existing member
 				if (verified) {
 					System.out.println("Member ID Validated");
-					serviceID = applyService(memberID);
-					if(serviceID != -1) { // if service was not cancelled, continue with verification form
-					
-						System.out.println("Successfully Verified.");
-					}
-						
+					applyService(memberID); // Continues process in separate function
 				} else {
 					System.out.println("Invalid Number. Please check your input and try again.");
 					userInput.nextLine();
 				}
 			}
 		}
-		System.out.println("Exiting the terminal.");
+		System.out.println("Exiting the terminal."); // Ending terminal use
 	}
 	
-	private String convertDate(String in) {
+	private String convertDate(String in) { // Converts from format requested in requirements to java's parsing format
 		String[] args = in.split("-");
 		if(args.length < 2)
 			return in; //safety, retry entering
@@ -75,49 +70,50 @@ public class ProviderTerminal {
 		userInput.nextLine();
 		boolean invalid = true;
 		
-		LocalDate date = LocalDate.parse("1970-01-01");
+		LocalDate date = LocalDate.parse("1970-01-01"); // Default date
 		while(invalid) {
 			String response = userInput.nextLine();
 			try {
-				date = LocalDate.parse(convertDate(response));
+				date = LocalDate.parse(convertDate(response));  // Repeatedly attempts to parse user's date input
 				invalid = false;
 			} catch (DateTimeParseException e) {
-				System.out.println("Please use the requested format- \"mm-dd-yyyy\"");
+				System.out.println("Please use the requested format- \"mm-dd-yyyy\""); // Requests format again
 			}
 		}
 		int servCode = 1;
-		String servName = "No Service Found";
+		String servName = "No Service Found"; // Default
 		boolean confirmed = false;
 		while(!confirmed) {
 			System.out.println("Please enter a service code.");
 			boolean invalidCode = true;
 			
-			while(invalidCode) {
+			while(invalidCode) { // Repeatedly checks service codes
 				boolean failing = true;
 				while(failing) {
 					try {
 						servCode = userInput.nextInt();
 						failing = false;
-					} catch (InputMismatchException ime) {
+					} catch (InputMismatchException ime) { // Handles case where it's not an integer
 						System.out.println("Please input a numeric code.");
 					}
 				}
 				servName = db.getServiceName(servCode);
-				if(!servName.equals("No Service Found")){
+				if(!servName.equals("No Service Found")){ // If service type was found with this code
 					invalidCode = false;
 				} else {
-					System.out.println("No service found. Input a new service code.");
+					System.out.println("No service found. Input a new service code."); // Request again and repeat
 				}
 			}
 			
+			// Confirming service choice, choosing new option, or allowing user to cancel the service creation
 			System.out.println(servName);
 			System.out.println("Input \"confirm\" to confirm your service selection, enter to input a new code, or \"exit\" to exit");
 			userInput.nextLine();
 			String response = userInput.nextLine();
 			if(response.equals("confirm")) {
-				confirmed = true;
+				confirmed = true; // Exits top loop
 			} else if(response.equals("exit")) {
-				System.out.println("Process cancelled.");
+				System.out.println("Process cancelled."); // Returns to terminal "home" (top of prompt)
 				userInput.nextLine();
 				return;
 			} else {
@@ -129,7 +125,7 @@ public class ProviderTerminal {
 		boolean validated = false;
 		while(!validated) {
 			System.out.println("Please input provider ID.");
-			try {
+			try { // Repeatedly receives and checks provider ID's for matches
 				provID = userInput.nextInt();
 				validated = db.validateProviderID(provID);
 			} catch (InputMismatchException ime) {
@@ -139,31 +135,33 @@ public class ProviderTerminal {
 
 		LocalDateTime curDTime = LocalDateTime.now();
 		
-		Service newService = new Service(servCode, provID, memberID, date, curDTime, db.getServices().size() + 1);
+		// Allows users to input any comments if they wish
+		Service newService = new Service(db.getServices().size() + 1, servCode, provID, memberID, date, curDTime);
 		System.out.println("Add any comments or press enter to skip. Only the first 100 characters will be used.");
+		userInput.nextLine();
 		String response = userInput.nextLine();
-		if(response.length() > 100) {
+		if(response.length() > 100) { // Limits comments to 100 chars
 			response = response.substring(0, 99);
 		}
-		newService.addComments(response);
+		newService.addComments(response); // Updates comments
+		
+		
 		boolean verified = createVerificationForm(newService);
-		if(!verified) {
+		if(!verified) { // Only happens if a cancel occurs in the form.
 			System.out.println("Process Cancelled.");
 			return;
 		}
+		
+		// Records service after verification
+		System.out.println("Service has been recorded.");
 		newService.logService();
-		db.addService(newService); // Adds service to database
-		
-		System.out.println("Service Fee: $" + newService.getFee() + "\n");
-		newService.getFee();
-		
 	}
 	
 	private boolean promptStringMatch(String item, String match) { // prompts user to match the string
 		boolean invalid = true;
 		String response = " ";
 		while(invalid) {
-			System.out.println("Enter " + item + ": ");
+			System.out.println("Enter " + item + ", or \"exit\" to cancel: ");
 			response = userInput.nextLine();
 			if(!response.equals(match)) {
 				System.out.println("Please enter the matching " + item + ".");
