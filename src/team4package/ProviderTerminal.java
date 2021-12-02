@@ -15,10 +15,10 @@ public class ProviderTerminal {
 	
 	ProviderTerminal() throws IOException { // Declares input scanner and connects to database instance
 		userInput = new Scanner(System.in);
+		db = DatabaseManager.getInstance();
 	}
 	
 	public void prompt() throws IOException {
-		db = DatabaseManager.getInstance();
 		
 		int serviceID;
 		while(true) { // While user has not input "exit"

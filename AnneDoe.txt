@@ -1,0 +1,18 @@
+Provider Report
+
+Provider Name: Anne Doe
+Provider ID: 2
+200 Test Avenue
+Tuscaloosa
+Alabama
+35408
+
+Date of Service: 2021-12-01
+Current Date/Time: 2021-12-01T11:21:20.606
+Member Name: Bob Smith
+Member ID: 3
+Service ID: 2
+Service Fee: 4200
+
+Total Service Quantity: 1
+Total Provider Fees: 4200

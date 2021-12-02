@@ -1,4 +1,8 @@
-// Trent Boughner
+package team4package;
+
+import java.io.IOException;
+import java.util.Scanner;
+
 package team4package;
 
 import java.io.IOException;
@@ -9,25 +13,19 @@ class Simulator{
 	Scanner userInput;
 	private static DatabaseManager db;
 	
-	// Creates scanner function that scans in user's input
+	// Constructor; creates scanner function that scans in user's input
 	Simulator(){
 		userInput = new Scanner(System.in);
 	}
 	
-	// Creates instance of simulator and and prompt
+	// Main file; creates instance of simulator and and prompt
 	public static void main(String args[]) throws IOException {
 		Simulator sim = new Simulator();
-		db = DBSetup();
+		db = DatabaseManager.getInstance();
+		db.importDatabase();
 		sim.prompt();
 		db.exportDatabase();
 		return;
-	}
-	
-	
-	public static DatabaseManager DBSetup() throws IOException {
-		DatabaseManager tempDB = DatabaseManager.getInstance();
-		tempDB.importDatabase();
-		return tempDB;
 	}
 	
 	// Prompts user to choose provider, manager, or operator terminal
