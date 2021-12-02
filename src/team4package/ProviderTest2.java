@@ -14,22 +14,23 @@ public class ProviderTest2 {
 	public void setUp() throws Exception {
 		newProv = new Provider(123456789, "Trent", "777 Atlantis Ave.", "Birmingham", "Alabama", "35242");
 	}
-	// Checking Provider's Address
+	// Checking Provider's Address - implemented this method
 	@Test
 	public void getAddress() {
 		assertEquals("777 Atlantis Ave.", newProv.getAddress());
 	}
-	// Checking Provider's City
+	// Checking Provider's City - implemented this method
 	@Test
 	public void getCity() {
 		assertEquals("Birmingham", newProv.getCity());
 	}
-	// Checking Provider's ZIP Code
+	// Checking Provider's ZIP Code - did not implement this method
 	@Test
 	public void getZip() {
 		assertEquals("35242", newProv.getZip());
 	}
 	
+	@After
 	public void tearDown() throws Exception {
 		
 	}
