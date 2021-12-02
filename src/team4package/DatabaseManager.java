@@ -74,7 +74,7 @@ class DatabaseManager {
 		serviceTypesReader.close();
 	}
 	
-	private void exportMembersCSV() throws IOException {
+	private void exportMembersCSV() throws IOException { // writes members list to members.csv
 		FileWriter fw = new FileWriter("./data/members.csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < members.size(); i++) {
@@ -83,7 +83,7 @@ class DatabaseManager {
 		pw.close();
 	}
 	
-	private void exportProvidersCSV() throws IOException {
+	private void exportProvidersCSV() throws IOException { // writes providers list to members.csv
 		FileWriter fw = new FileWriter("./data/providers.csv");
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < providers.size(); i++) {
@@ -97,7 +97,7 @@ class DatabaseManager {
 		PrintWriter pw = new PrintWriter(fw);
 		for(int i=0; i < services.size(); i++) {
 			pw.print(services.get(i).getServiceIDX() + "," + services.get(i).getProviderID() + "," + services.get(i).getMemberID() + "," + services.get(i).getDate() + "," + services.get(i).getInputDate() + "\n");
-		} //int srcID, int srcProvID, int srcMemID, LocalDate srcDate, LocalDateTime srcDTime
+		}
 		pw.close();
 	}
 	
@@ -196,6 +196,12 @@ class DatabaseManager {
 	public void addMember(Member addMe) throws IOException { // adds 'addMe' to the local members list
 		members.add(addMe);
 		exportDatabase();
+	}
+	
+	public void addMember(Member addMe, boolean export) throws IOException { // adds 'addMe' to the local members list, exports if true
+		members.add(addMe);
+		if(export)
+			exportDatabase();
 	}
 	
 	public void addProvider(Provider addMe) throws IOException { // adds 'addMe' to the local providers list
