@@ -8,10 +8,12 @@ class Simulator{
 	Scanner userInput;
 	private static DatabaseManager db;
 	
+	// Constructor; creates scanner function that scans in user's input
 	Simulator(){
 		userInput = new Scanner(System.in);
 	}
 	
+	// Main file; creates instance of simulator and and prompt
 	public static void main(String args[]) throws IOException {
 		Simulator sim = new Simulator();
 		db = DatabaseManager.getInstance();
@@ -21,6 +23,7 @@ class Simulator{
 		return;
 	}
 	
+	// Prompts user to choose provider, manager, or operator terminal
 	private void prompt() throws IOException {
 		boolean ongoing = true;
 		while(ongoing) {
