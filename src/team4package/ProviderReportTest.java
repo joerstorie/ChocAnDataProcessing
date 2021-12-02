@@ -1,3 +1,4 @@
+// Trent Boughner - Test Case 2
 package team4package;
 
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ public class ProviderReportTest {
 	public void setUp() throws Exception {
 		pr = new ProviderReport();
 	}
-	
+	// Tests to see if report create and written
 	@Test
 	public void test() {
 		pr.saveReport();
