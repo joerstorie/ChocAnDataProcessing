@@ -23,6 +23,7 @@ class Simulator{
 		return;
 	}
 	
+	
 	public static DatabaseManager DBSetup() throws IOException {
 		DatabaseManager tempDB = DatabaseManager.getInstance();
 		tempDB.importDatabase();

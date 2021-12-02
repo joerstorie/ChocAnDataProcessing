@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 class Service {
+	
 	private LocalDate serviceDate;
 	private int providerID;
 	private int memberID;
@@ -28,7 +28,7 @@ class Service {
 	public void addComments(String srcComments) {
 		comments = srcComments;
 	}
-	
+
 	public int getProviderID() {
 		return providerID;
 	}

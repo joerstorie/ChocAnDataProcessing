@@ -33,5 +33,4 @@ public class ProviderTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
 }
