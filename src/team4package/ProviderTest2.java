@@ -30,8 +30,5 @@ public class ProviderTest2 {
 		assertEquals("35242", newProv.getZip());
 	}
 	
-	@After
-	public void tearDown() throws Exception {
-		
-	}
+
 }

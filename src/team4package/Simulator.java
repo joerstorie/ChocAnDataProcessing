@@ -3,11 +3,6 @@ package team4package;
 import java.io.IOException;
 import java.util.Scanner;
 
-package team4package;
-
-import java.io.IOException;
-import java.util.Scanner;
-
 class Simulator{
 	
 	Scanner userInput;
