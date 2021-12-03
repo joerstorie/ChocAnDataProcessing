@@ -16,22 +16,22 @@ public class MemberTest {
 		member = new Member(2, "Trent Boughner", "420 Fake Address", "Tuscaloosa", "Alabama", "35408");
 	}
 
-	@Test
+	@Test // method written by Joseph
 	public void testGetZipForSuccess() {
 		assertEquals("35408", member.getZip());
 	}
 	
-	@Test
+	@Test // method written by Joseph
 	public void testGetZipForFailure() {
 		assertNotEquals("00000", member.getZip());
 	}
 
-	@Test
+	@Test // method written by Sean
 	public void testGetIDForSuccess() {
 		assertEquals(2, member.getID());
 	}
 
-	@Test
+	@Test // method written by Sean
 	public void testGetIDForFailure() {
 		assertNotEquals(0, member.getID());
 	}

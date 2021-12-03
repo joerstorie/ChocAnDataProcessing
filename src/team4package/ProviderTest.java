@@ -1,9 +1,8 @@
-//Jake Silvey -- Test Case 1
+// Jake Silvey
 package team4package;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,23 +13,23 @@ public class ProviderTest {
 	public void setUp() throws Exception {
 		newProv = new Provider(12, "Jake", "1234 Dr", "Tuscaloosa", "Alabama", "35401");
 	}
-	//Testing to see if Provider State is stored correctly to its respective provider
-	@Test
-	public void ProviderStateTest() {
+	
+	// method written by Jake
+	@Test //Testing to see if Provider State is stored correctly to its respective provider
+	public void ProviderStateTestForSuccess() {
 		assertEquals("Alabama", newProv.getState());
 	}
-	//Checking Provider's Name
-	@Test
-	public void ProviderNameTest() {
-		assertEquals("Jake", newProv.getName());
-	}
-	//Checking Provider's ID
-	@Test
-	public void ProviderIDTest() {
-		assertEquals(12, newProv.getID());
+	
+	// method written by Jake
+	@Test //Checking Provider's Name
+	public void ProviderNameTestForFailure() {
+		assertNotEquals("Riley", newProv.getName());
 	}
 	
-	@After
-	public void tearDown() throws Exception {
+	// method written by Trent
+	@Test //Checking Provider's ID
+	public void ProviderIDTestForSuccess() {
+		assertEquals(12, newProv.getID());
 	}
+
 }
