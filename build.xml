@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="fall2021team4">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="16"/>
+    <property name="source" value="16"/>
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/../.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+              	<target name="create_run_jar">
+              	        <jar destfile="${dir.jarfile}/release/bruh.jar">
+              	            <manifest>
+              	                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+              	                <attribute name="Rsrc-Main-Class" value="team4package.Simulator"/>
+              	                <attribute name="Class-Path" value="."/>
+              	                <attribute name="Rsrc-Class-Path" value="./ org.junit_4.13.0.v20200204-1500.jar org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+              	            </manifest>
+              	            <zipfileset src="jar-in-jar-loader.zip"/>
+              	            <fileset dir="${dir.jarfile}/bin"/>
+              	            <zipfileset dir="F:/files/Tools/Computer Tools/eclipse/plugins" includes="org.junit_4.13.0.v20200204-1500.jar"/>
+              	            <zipfileset dir="F:/files/Tools/Computer Tools/eclipse/plugins" includes="org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+              	        </jar>
+              	    </target>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../../Tools/Computer Tools/eclipse/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
+        <pathelement location="../../../Tools/Computer Tools/eclipse/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
+    <path id="fall2021team4.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.DatabaseManagerTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.EFTDataLogTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ManagerMemberTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ManagerProviderTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ManagerTerminal.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.MemberTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.OperatorTerminal.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ProviderTerminalTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ProviderTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ServiceTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.ServiceTypeTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.Simulator.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <path id="run.SummaryReportTest.classpath">
+        <path refid="fall2021team4.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="fall2021team4.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="DatabaseManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.DatabaseManagerTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.DatabaseManagerTest.classpath"/>
+        </junit>
+    </target>
+    <target name="EFTDataLogTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.EFTDataLogTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.EFTDataLogTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ManagerMemberTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.ManagerMemberTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.ManagerMemberTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ManagerProviderTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.ManagerProviderTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.ManagerProviderTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ManagerTerminal">
+        <java classname="team4package.ManagerTerminal" failonerror="true" fork="yes">
+            <classpath refid="run.ManagerTerminal.classpath"/>
+        </java>
+    </target>
+    <target name="MemberTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.MemberTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.MemberTest.classpath"/>
+        </junit>
+    </target>
+    <target name="OperatorTerminal">
+        <java classname="team4package.OperatorTerminal" failonerror="true" fork="yes">
+            <classpath refid="run.OperatorTerminal.classpath"/>
+        </java>
+    </target>
+    <target name="ProviderTerminalTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.ProviderTerminalTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.ProviderTerminalTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ProviderTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.ProviderTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.ProviderTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ServiceTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.ServiceTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.ServiceTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ServiceTypeTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.ServiceTypeTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.ServiceTypeTest.classpath"/>
+        </junit>
+    </target>
+    <target name="Simulator">
+        <java classname="team4package.Simulator" failonerror="true" fork="yes">
+            <classpath refid="run.Simulator.classpath"/>
+        </java>
+    </target>
+    <target name="SummaryReportTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="team4package.SummaryReportTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.SummaryReportTest.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
