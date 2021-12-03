@@ -20,6 +20,9 @@ class ReportController{
 	
 	// creates EFTDataLog, Summary Report, Member Report, and Provider Report based on user input
 	public void createReports() throws IOException {
+		members = db.getMembers();
+		providers = db.getProviders();
+		
 		FileWriter fw = new FileWriter("AllReports.txt");
 		PrintWriter pw = new PrintWriter(fw);
 		
@@ -30,7 +33,7 @@ class ReportController{
 		sr.saveReportAll(fw, pw);
 		
 		for(int i = 0; i < members.size(); i++) {
-			Member mem = db.fetchMemberByID(i);
+			Member mem = db.fetchMemberByID(i+1);
 			MemberReport mr = new MemberReport(mem);
 			mr.saveReportAll(fw, pw);
 		}
