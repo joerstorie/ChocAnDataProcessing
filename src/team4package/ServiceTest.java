@@ -1,4 +1,4 @@
-//Joe Storie
+// Riley Parker
 package team4package;
 
 import static org.junit.Assert.*;
@@ -18,17 +18,22 @@ public class ServiceTest {
 		myStitches.addComments("Testing comments!");
 	}
 	
-	@Test
-	public void testProviderID() {
+	@Test // method written by Riley
+	public void testProviderIDForSuccess() {
 		assertEquals(1, myStitches.getProviderID());
 	}
+	
+	@Test // method written by Riley
+	public void testProviderIDForFailure() {
+		assertNotEquals(-1, myStitches.getProviderID());
+	}
 
-	@Test
-	public void testServiceID() {
+	@Test // method written by Riley
+	public void testServiceIDForSuccess() {
 		assertEquals(1, myStitches.getServiceIDX());
 	}
 	
-	@Test
+	@Test // method written by Rodney
 	public void testComments() {
 		assertEquals("Testing comments!", myStitches.getComments());
 	}
