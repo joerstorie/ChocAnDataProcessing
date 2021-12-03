@@ -1,7 +1,8 @@
-//Riley Parker
 package team4package;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 class ReportController{
@@ -19,16 +20,27 @@ class ReportController{
 	
 	// creates EFTDataLog, Summary Report, Member Report, and Provider Report based on user input
 	public void createReports() throws IOException {
-		createEFTDataLog();
-		createSummaryReport();
+		FileWriter fw = new FileWriter("AllReports.txt");
+		PrintWriter pw = new PrintWriter(fw);
+		
+		EFTDataLog eft = new EFTDataLog();
+		eft.saveLogAll(fw, pw);
+		
+		SummaryReport sr = new SummaryReport();
+		sr.saveReportAll(fw, pw);
 		
 		for(int i = 0; i < members.size(); i++) {
-			createMemberReport(members.get(i));
+			Member mem = db.fetchMemberByID(i);
+			MemberReport mr = new MemberReport(mem);
+			mr.saveReportAll(fw, pw);
 		}
 		
 		for(int i = 0; i < providers.size(); i++) {
-			createProviderReport(providers.get(i));
+			ProviderReport pr = new ProviderReport(providers.get(i));
+			pr.saveReportAll(fw, pw);
 		}
+		
+		pw.close();
 	}
 	
 	// creates EFTDataLog

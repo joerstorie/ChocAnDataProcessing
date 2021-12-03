@@ -46,4 +46,33 @@ class SummaryReport {
 		pw.print("Total Number of Fees: " + totalFee + "\n");
 		pw.close();
 	}
+	
+	//Creates and populates report
+		public void saveReportAll(FileWriter fw, PrintWriter pw) throws IOException {
+			int numProviders = 0;
+			int numServices = 0;
+			int totNumServices = 0;
+			int totalFee = 0;
+			
+			pw.print("Summary Report\n\n");
+			
+			//Reads through providers to get information including the fee
+			ArrayList<Provider> providers = db.getProviders();
+			for (int i = 0; i < providers.size(); i++) {
+				numProviders++;
+				numServices = providers.get(i).getNumServices();
+				totNumServices = totNumServices + numServices;
+				int currFee = providers.get(i).getTotalFee();
+				totalFee = totalFee + currFee;
+				pw.print(providers.get(i).getName() + "----" + numServices + " services" + "----" + "$" + currFee);
+				pw.print("\n");
+				
+			}
+			//Prints number of providers/services and total fee
+			pw.print("\n");
+			pw.print("Total Number of Providers: " + numProviders + "\n");
+			pw.print("Total Number of Services: " + totNumServices + "\n");
+			pw.print("Total Number of Fees: " + totalFee + "\n");
+			pw.print("\n");
+		}
 }

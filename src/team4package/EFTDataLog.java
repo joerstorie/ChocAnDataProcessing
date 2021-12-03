@@ -31,5 +31,15 @@ class EFTDataLog {
 		pw.close();
 	}
 	
+	public void saveLogAll(FileWriter fw, PrintWriter pw) throws IOException {
+		pw.print("EFT Data Log\n\n");
+		//Reads through all providers to get Provider name and their current fee
+		ArrayList<Provider> providers = db.getProviders();
+		for (int i = 0; i < providers.size(); i++) {
+			int currFee = providers.get(i).getTotalFee();
+			pw.print(providers.get(i).getName() + "----" + "$" + currFee);
+			pw.print("\n");
+		}
+	}
 	
 }

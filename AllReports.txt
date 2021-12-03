@@ -1,0 +1,63 @@
+EFT Data Log
+
+DCH----$4400
+Summary Report
+
+DCH----2 services----$4400
+
+Total Number of Providers: 1
+Total Number of Services: 2
+Total Number of Fees: 4400
+
+Member Report
+
+Riley Parker
+ID: 1
+8010 Rosemere Way
+Chattanooga
+Tennessee
+37421
+
+2019-09-23
+Provider: DCH
+Service: Dental Procedure
+
+Member Report
+
+Riley Parker
+ID: 1
+8010 Rosemere Way
+Chattanooga
+Tennessee
+37421
+
+2019-09-23
+Provider: DCH
+Service: Dental Procedure
+
+Provider Report
+
+Provider Name: DCH
+Provider ID: 1
+1020 DCH Lane
+Tuscaloosa
+Alabama
+35408
+
+Date of Service: 2019-09-23
+Current Date/Time: 2021-12-02T22:10:41.374192
+Member Name: Riley Parker
+Member ID: 1
+Service ID: 1
+Service Fee: 200
+
+Date of Service: 2019-08-12
+Current Date/Time: 2021-12-02T22:10:41.374192
+Member Name: Trent Boughner
+Member ID: 2
+Service ID: 2
+Service Fee: 4200
+
+Total Service Quantity: 2
+Total Provider Fees: 4400
+
