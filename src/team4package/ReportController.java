@@ -33,8 +33,9 @@ class ReportController{
 		sr.saveReportAll(fw, pw);
 		
 		for(int i = 0; i < members.size(); i++) {
-			Member mem = db.fetchMemberByID(i+1);
+			Member mem = members.get(i);
 			MemberReport mr = new MemberReport(mem);
+			
 			mr.saveReportAll(fw, pw);
 		}
 		
