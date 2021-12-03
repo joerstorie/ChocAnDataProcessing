@@ -3,7 +3,6 @@ package team4package;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,21 +15,18 @@ public class ProviderTest {
 	}
 	//Testing to see if Provider State is stored correctly to its respective provider
 	@Test
-	public void ProviderStateTest() {
+	public void ProviderStateTestForSuccess() {
 		assertEquals("Alabama", newProv.getState());
 	}
 	//Checking Provider's Name
 	@Test
-	public void ProviderNameTest() {
-		assertEquals("Jake", newProv.getName());
+	public void ProviderNameTestForFailure() {
+		assertNotEquals("Riley", newProv.getName());
 	}
 	//Checking Provider's ID
 	@Test
-	public void ProviderIDTest() {
+	public void ProviderIDTestForSuccess() {
 		assertEquals(12, newProv.getID());
 	}
-	
-	@After
-	public void tearDown() throws Exception {
-	}
+
 }

@@ -25,6 +25,11 @@ public class ServiceTypeTest {
 	public void testGetIDForFailure() {
 		assertNotEquals(0, serviceType.getID());
 	}
+	
+	@Test
+	public void testGetNameForSuccess() {
+		assertEquals("name", serviceType.getName());
+	}
 
 }
 
