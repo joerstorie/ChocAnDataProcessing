@@ -1,1 +1,0 @@
-	MemberReport mr;
